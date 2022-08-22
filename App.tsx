@@ -9,9 +9,10 @@
  */
 
 import React from 'react';
-import HomePage from './components/HomePage';
+// import WelcomeScreen from './app/Screens/WelcomeScreen';
+import ListingsScreen from './app/Screens/ListingsScreen';
 
 const App = () => {
-  return <HomePage />;
+  return <ListingsScreen />;
 };
 export default App;
