@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     flex: 1,
-    // justifyContent: 'center',
     alignItems: 'center',
     top: 25,
     right: 25,

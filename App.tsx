@@ -9,10 +9,15 @@
  */
 
 import React from 'react';
-// import WelcomeScreen from './app/Screens/WelcomeScreen';
-import ListingsScreen from './app/Screens/ListingsScreen';
+// import ListingDetailScreen from './app/Screens/ListingDetailScreen';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import MessagesScreen from './app/Screens/MessagesScreen';
 
 const App = () => {
-  return <ListingsScreen />;
+  return (
+    <SafeAreaProvider>
+      <MessagesScreen />
+    </SafeAreaProvider>
+  );
 };
 export default App;

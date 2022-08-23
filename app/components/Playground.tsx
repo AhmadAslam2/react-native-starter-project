@@ -1,5 +1,8 @@
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import SafeAreaView from 'react-native-safe-area-view';
+
 import React from 'react';
+import colors from '../config/colors';
 
 const Playground = () => {
   return (
@@ -30,6 +33,6 @@ const styles = StyleSheet.create({
     width: 140,
     height: 100,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: colors.black,
   },
 });
