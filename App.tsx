@@ -9,14 +9,32 @@
  */
 
 import React from 'react';
-// import ListingDetailScreen from './app/Screens/ListingDetailScreen';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import MessagesScreen from './app/Screens/MessagesScreen';
+import ListingsScreen from './app/Screens/ListingsScreen';
+import AccountScreen from './app/Screens/AccountScreen';
+import WelcomeScreen from './app/Screens/WelcomeScreen';
+import ListingDetailScreen from './app/Screens/ListingDetailScreen';
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <SafeAreaProvider>
-      <MessagesScreen />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="WelcomeScreen">
+          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+          <Stack.Screen name="AccountScreen" component={AccountScreen} />
+          <Stack.Screen name="ListingsScreen" component={ListingsScreen} />
+          <Stack.Screen
+            name="ListingDetailScreen"
+            component={ListingDetailScreen}
+          />
+          <Stack.Screen name="MessagesScreen" component={MessagesScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 };

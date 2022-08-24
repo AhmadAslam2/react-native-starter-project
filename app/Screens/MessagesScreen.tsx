@@ -1,9 +1,10 @@
 import {FlatList, ImageSourcePropType, StyleSheet} from 'react-native';
-import React from 'react';
-import ListItemWithImage from '../components/ListItemWithImage';
+import React, {useState} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
+
+import ListItemWithImage from '../components/ListItemWithImage';
 import ListItemSeperator from '../components/ListItemSeperator';
-import deleteItemAction from '../components/deleteItemAction';
+import SwipeRightAction from '../components/SwipeRightAction';
 
 interface Message {
   id: string;
@@ -11,7 +12,7 @@ interface Message {
   description: string;
   image: ImageSourcePropType;
 }
-const messages: Message[] = [
+let _messages: Message[] = [
   {
     id: '112',
     title: 'Rana Joseph',
@@ -30,9 +31,38 @@ const messages: Message[] = [
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
+  {
+    id: '4',
+    title: 'Rana Joseph',
+    description: 'I am under waterr woooo',
+    image: require('../assests/profile.jpg'),
+  },
+  {
+    id: '553',
+    title: 'Rana Joseph',
+    description: 'I am under waterr woooo',
+    image: require('../assests/profile.jpg'),
+  },
+  {
+    id: '53',
+    title: 'Rana Joseph',
+    description: 'I am under waterr woooo',
+    image: require('../assests/profile.jpg'),
+  },
+  {
+    id: '331',
+    title: 'Rana Joseph',
+    description: 'I am under waterr woooo',
+    image: require('../assests/profile.jpg'),
+  },
 ];
 
 const MessagesScreen = () => {
+  const [messages, setMessages] = useState(_messages);
+
+  const handleDelete = (id: string) => {
+    setMessages(messages.filter(message => message.id !== id));
+  };
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -43,8 +73,9 @@ const MessagesScreen = () => {
             image={item.image}
             title={item.title}
             description={item.description}
-            onPress={() => console.log(item)}
-            renderRightActions={deleteItemAction}
+            renderRightActions={() => (
+              <SwipeRightAction onPress={() => handleDelete(item.id)} />
+            )}
           />
         )}
         ItemSeparatorComponent={ListItemSeperator}
