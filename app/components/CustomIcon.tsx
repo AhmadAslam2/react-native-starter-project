@@ -1,7 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Icon} from '@rneui/themed';
-
 interface CustomIconProps {
   backgroundColor: string;
   name: string;
@@ -11,7 +10,7 @@ interface CustomIconProps {
 }
 
 const CustomIcon = ({
-  backgroundColor,
+  backgroundColor = 'white',
   name,
   size,
   color,

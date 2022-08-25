@@ -5,7 +5,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import ListItemWithImage from '../components/ListItemWithImage';
 import ListItemSeperator from '../components/ListItemSeperator';
 import SwipeRightAction from '../components/SwipeRightAction';
-
+import MenuBar from '../components/MenuBar';
 interface Message {
   id: string;
   title: string;
@@ -15,43 +15,43 @@ interface Message {
 let _messages: Message[] = [
   {
     id: '112',
-    title: 'Rana Joseph',
+    title: 'Rana William',
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
   {
     id: '212',
-    title: 'Rana Joseph',
+    title: 'Rana William',
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
   {
     id: '3',
-    title: 'Rana Joseph',
+    title: 'Rana William',
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
   {
     id: '4',
-    title: 'Rana Joseph',
+    title: 'Rana William',
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
   {
     id: '553',
-    title: 'Rana Joseph',
+    title: 'Rana William',
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
   {
     id: '53',
-    title: 'Rana Joseph',
+    title: 'Rana William',
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
   {
     id: '331',
-    title: 'Rana Joseph',
+    title: 'Rana William',
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
@@ -80,6 +80,7 @@ const MessagesScreen = () => {
         )}
         ItemSeparatorComponent={ListItemSeperator}
       />
+      <MenuBar />
     </SafeAreaView>
   );
 };

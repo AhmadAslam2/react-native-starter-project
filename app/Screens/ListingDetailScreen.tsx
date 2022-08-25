@@ -4,6 +4,7 @@ import SafeAreaView from 'react-native-safe-area-view';
 import React from 'react';
 import Card from '../components/Card';
 import ListItemWithImage from '../components/ListItemWithImage';
+import MenuBar from '../components/MenuBar';
 
 const ListingDetailScreen = () => {
   return (
@@ -16,15 +17,16 @@ const ListingDetailScreen = () => {
         />
         <ListItemWithImage
           image={require('../assests/profile.jpg')}
-          title="Rana Joseph"
+          title="Rana William"
           description="5 Listings"
         />
         <ListItemWithImage
           image={require('../assests/profile.jpg')}
-          title="Rana Joseph"
+          title="Rana William"
           description="5 Listings"
         />
       </View>
+      <MenuBar />
     </SafeAreaView>
   );
 };

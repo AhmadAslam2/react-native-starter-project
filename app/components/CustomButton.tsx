@@ -4,11 +4,14 @@ import React from 'react';
 interface CustomButtonProps {
   color: string;
   text: string;
+  onPress: any;
 }
 
-const CustomButton = ({color, text}: CustomButtonProps) => {
+const CustomButton = ({color, text, onPress}: CustomButtonProps) => {
   return (
-    <TouchableOpacity style={[styles.container, {backgroundColor: color}]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.container, {backgroundColor: color}]}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );

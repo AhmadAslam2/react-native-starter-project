@@ -1,13 +1,24 @@
 import {Button, StyleSheet, View} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const MenuBar = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Button title="R1" />
-      <Button title="R2" />
-      <Button title="R3" />
-      <Button title="R4" />
+      <Button
+        onPress={() => navigation.navigate('ListingsScreen')}
+        title="R1"
+      />
+      <Button
+        onPress={() => navigation.navigate('ListingDetailScreen')}
+        title="R2"
+      />
+      <Button
+        onPress={() => navigation.navigate('MessagesScreen')}
+        title="R3"
+      />
+      <Button onPress={() => navigation.navigate('AccountScreen')} title="R4" />
     </View>
   );
 };

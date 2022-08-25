@@ -1,10 +1,11 @@
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 import colors from '../config/colors';
-
 import CustomButton from '../components/CustomButton';
 const WelcomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -22,8 +23,16 @@ const WelcomeScreen = () => {
           </Text>
         </View>
         <View>
-          <CustomButton color={colors.primary} text="REGISTER" />
-          <CustomButton color={colors.secondary} text="SIGN IN" />
+          <CustomButton
+            onPress={() => navigation.navigate('ListingsScreen')}
+            color={colors.primary}
+            text="REGISTER"
+          />
+          <CustomButton
+            onPress={() => navigation.navigate('ListingsScreen')}
+            color={colors.secondary}
+            text="SIGN IN"
+          />
         </View>
       </ImageBackground>
     </View>

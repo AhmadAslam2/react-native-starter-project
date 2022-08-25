@@ -8,6 +8,7 @@ import ListItemWithIcon from '../components/ListItemWithIcon';
 import ListItemSeperator from '../components/ListItemSeperator';
 import colors from '../config/colors';
 import CustomIcon from '../components/CustomIcon';
+import MenuBar from '../components/MenuBar';
 
 interface Data {
   title: string;
@@ -78,6 +79,7 @@ const AccountScreen = () => {
           title="Logout"
         />
       </View>
+      <MenuBar />
     </SafeAreaView>
   );
 };
