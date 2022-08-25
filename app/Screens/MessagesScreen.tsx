@@ -6,6 +6,7 @@ import ListItemWithImage from '../components/ListItemWithImage';
 import ListItemSeperator from '../components/ListItemSeperator';
 import SwipeRightAction from '../components/SwipeRightAction';
 import MenuBar from '../components/MenuBar';
+
 interface Message {
   id: string;
   title: string;
@@ -58,7 +59,7 @@ let _messages: Message[] = [
 ];
 
 const MessagesScreen = () => {
-  const [messages, setMessages] = useState(_messages);
+  const [messages, setMessages] = useState<Message[]>(_messages);
 
   const handleDelete = (id: string) => {
     setMessages(messages.filter(message => message.id !== id));

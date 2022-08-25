@@ -4,7 +4,7 @@ import React from 'react';
 interface CustomButtonProps {
   color: string;
   text: string;
-  onPress: any;
+  onPress(): void;
 }
 
 const CustomButton = ({color, text, onPress}: CustomButtonProps) => {

@@ -1,26 +1,31 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, TextInput, View} from 'react-native';
+import React from 'react';
 
 interface TextInputWithIconProps {
   Icon?: React.ReactElement;
   placeholder?: string;
+  onChangeText?: any;
+  secureTextEntry?: boolean;
 }
-const TextInputWithIcon = ({Icon, placeholder}: TextInputWithIconProps) => {
-  const [text, setText] = useState('');
+const TextInputWithIcon = ({
+  Icon,
+  placeholder,
+  onChangeText,
+  secureTextEntry,
+}: TextInputWithIconProps) => {
   return (
-    <>
-      <Text>{text}</Text>
-      <View style={styles.container}>
-        {Icon}
-        <TextInput
-          style={styles.input}
-          clearButtonMode="always"
-          onChangeText={value => setText(value)}
-          placeholder={placeholder}
-          autoCorrect={false}
-        />
-      </View>
-    </>
+    <View style={styles.container}>
+      {Icon}
+      <TextInput
+        style={styles.input}
+        clearButtonMode="always"
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        autoCorrect={false}
+        autoCapitalize="none"
+        secureTextEntry={secureTextEntry}
+      />
+    </View>
   );
 };
 
@@ -36,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   input: {
-    marginLeft: 10,
-    width: '88%',
+    flex: 1,
+    marginLeft: 5,
   },
 });

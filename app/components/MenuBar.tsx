@@ -3,7 +3,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 const MenuBar = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   return (
     <View style={styles.container}>
       <Button

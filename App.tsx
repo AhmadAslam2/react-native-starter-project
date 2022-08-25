@@ -18,6 +18,7 @@ import ListingsScreen from './app/Screens/ListingsScreen';
 import AccountScreen from './app/Screens/AccountScreen';
 import WelcomeScreen from './app/Screens/WelcomeScreen';
 import ListingDetailScreen from './app/Screens/ListingDetailScreen';
+import LoginScreen from './app/Screens/LoginScreenn';
 
 type StackParams = {
   WelcomeScreen: undefined;
@@ -25,6 +26,7 @@ type StackParams = {
   ListingsScreen: undefined;
   ListingDetailScreen: undefined;
   MessagesScreen: undefined;
+  LoginScreen: undefined;
 };
 const Stack = createNativeStackNavigator<StackParams>();
 
@@ -33,10 +35,11 @@ const App = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="WelcomeScreen"
+          initialRouteName="LoginScreen"
           screenOptions={{
             headerShown: false,
           }}>
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
           <Stack.Screen name="AccountScreen" component={AccountScreen} />
           <Stack.Screen name="ListingsScreen" component={ListingsScreen} />

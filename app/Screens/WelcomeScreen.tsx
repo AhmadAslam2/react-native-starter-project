@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import colors from '../config/colors';
 import CustomButton from '../components/CustomButton';
 const WelcomeScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   return (
     <View style={styles.container}>
       <ImageBackground

@@ -1,15 +1,15 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, TouchableHighlight, View} from 'react-native';
 import React from 'react';
+import SafeAreaView from 'react-native-safe-area-view';
+import {useNavigation} from '@react-navigation/native';
 
 import ListItemWithImage from '../components/ListItemWithImage';
-import SafeAreaView from 'react-native-safe-area-view';
-
 import ListItemWithIcon from '../components/ListItemWithIcon';
 import ListItemSeperator from '../components/ListItemSeperator';
-import colors from '../config/colors';
 import CustomIcon from '../components/CustomIcon';
 import MenuBar from '../components/MenuBar';
-import TextInputWithIcon from '../components/TextInputWithIcon';
+
+import colors from '../config/colors';
 
 interface Data {
   title: string;
@@ -35,6 +35,7 @@ const listData: Data[] = [
   },
 ];
 const AccountScreen = () => {
+  const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userView}>
@@ -66,7 +67,10 @@ const AccountScreen = () => {
           ItemSeparatorComponent={ListItemSeperator}
         />
       </View>
-      <View style={styles.logout}>
+      <TouchableHighlight
+        underlayColor={colors.lightgrey}
+        onPress={() => navigation.navigate('WelcomeScreen')}
+        style={styles.logout}>
         <ListItemWithIcon
           Icon={
             <CustomIcon
@@ -79,18 +83,7 @@ const AccountScreen = () => {
           }
           title="Logout"
         />
-      </View>
-      <TextInputWithIcon
-        placeholder="Enter your Email"
-        Icon={
-          <CustomIcon
-            name="mail-outline"
-            type="ionicon"
-            size={25}
-            color={colors.lightgrey}
-          />
-        }
-      />
+      </TouchableHighlight>
       <MenuBar />
     </SafeAreaView>
   );
