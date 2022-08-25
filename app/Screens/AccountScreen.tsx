@@ -9,6 +9,7 @@ import ListItemSeperator from '../components/ListItemSeperator';
 import colors from '../config/colors';
 import CustomIcon from '../components/CustomIcon';
 import MenuBar from '../components/MenuBar';
+import TextInputWithIcon from '../components/TextInputWithIcon';
 
 interface Data {
   title: string;
@@ -79,6 +80,17 @@ const AccountScreen = () => {
           title="Logout"
         />
       </View>
+      <TextInputWithIcon
+        placeholder="Enter your Email"
+        Icon={
+          <CustomIcon
+            name="mail-outline"
+            type="ionicon"
+            size={25}
+            color={colors.lightgrey}
+          />
+        }
+      />
       <MenuBar />
     </SafeAreaView>
   );
