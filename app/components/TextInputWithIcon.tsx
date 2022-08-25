@@ -1,29 +1,32 @@
-import {StyleSheet, TextInput, View} from 'react-native';
+import {StyleSheet, TextInput, TextInputProps, View} from 'react-native';
 import React from 'react';
 
 interface TextInputWithIconProps {
   Icon?: React.ReactElement;
   placeholder?: string;
   onChangeText?: any;
-  secureTextEntry?: boolean;
+  props?: TextInputProps;
+  onBlur: any;
 }
 const TextInputWithIcon = ({
   Icon,
   placeholder,
   onChangeText,
-  secureTextEntry,
+  onBlur,
+  props = {},
 }: TextInputWithIconProps) => {
   return (
     <View style={styles.container}>
       {Icon}
       <TextInput
+        onBlur={onBlur}
         style={styles.input}
         clearButtonMode="always"
         onChangeText={onChangeText}
         placeholder={placeholder}
         autoCorrect={false}
         autoCapitalize="none"
-        secureTextEntry={secureTextEntry}
+        {...props}
       />
     </View>
   );

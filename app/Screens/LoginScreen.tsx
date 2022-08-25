@@ -2,12 +2,18 @@ import {Image, StyleSheet} from 'react-native';
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 import TextInputWithIcon from '../components/TextInputWithIcon';
 import CustomIcon from '../components/CustomIcon';
 import colors from '../config/colors';
 import CustomButton from '../components/CustomButton';
+import ErrorMessage from '../components/ErrorMessage';
 
+const validationScema = Yup.object().shape({
+  email: Yup.string().required().email().label('Email'),
+  password: Yup.string().required().min(4).label('Password'),
+});
 const LoginScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
@@ -15,8 +21,9 @@ const LoginScreen = () => {
 
       <Formik
         initialValues={{email: '', password: ''}}
-        onSubmit={value => console.log(value)}>
-        {({handleChange, handleSubmit}) => (
+        onSubmit={value => console.log(value)}
+        validationSchema={validationScema}>
+        {({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
           <>
             <TextInputWithIcon
               onChangeText={handleChange('email')}
@@ -29,11 +36,14 @@ const LoginScreen = () => {
                   color={colors.lightgrey}
                 />
               }
+              onBlur={() => setFieldTouched('email')}
             />
+            <ErrorMessage visible={touched.email} text={errors.email} />
+
             <TextInputWithIcon
               onChangeText={handleChange('password')}
+              onBlur={() => setFieldTouched('password')}
               placeholder="Enter your Password"
-              secureTextEntry={true}
               Icon={
                 <CustomIcon
                   name="lock-closed-outline"
@@ -42,7 +52,9 @@ const LoginScreen = () => {
                   color={colors.lightgrey}
                 />
               }
+              props={{secureTextEntry: true}}
             />
+            <ErrorMessage visible={touched.password} text={errors.password} />
             <CustomButton
               color={colors.primary}
               text="Login"
