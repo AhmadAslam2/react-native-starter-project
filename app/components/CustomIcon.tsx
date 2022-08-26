@@ -1,6 +1,9 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Icon} from '@rneui/themed';
+
+import _Icon from 'react-native-vector-icons/Ionicons';
+_Icon.loadFont();
 interface CustomIconProps {
   backgroundColor?: string;
   name: string;

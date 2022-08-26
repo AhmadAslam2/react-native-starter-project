@@ -1,8 +1,18 @@
 import {Button, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import ModalScreen from '../Screens/ModalScreen';
 
 const MenuBar = () => {
+  const [visible, setVisible] = useState<boolean>(false);
+
+  const toggleVisible = () => {
+    if (visible) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+  };
   const navigation = useNavigation<any>();
   return (
     <View style={styles.container}>
@@ -14,6 +24,8 @@ const MenuBar = () => {
         onPress={() => navigation.navigate('ListingDetailScreen')}
         title="R2"
       />
+      <Button onPress={toggleVisible} title="+" />
+      <ModalScreen visible={visible} toggleVisible={toggleVisible} />
       <Button
         onPress={() => navigation.navigate('MessagesScreen')}
         title="R3"

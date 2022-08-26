@@ -2,10 +2,12 @@ import {FlatList, ImageSourcePropType, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 
-import ListItemWithImage from '../components/ListItemWithImage';
-import ListItemSeperator from '../components/ListItemSeperator';
-import SwipeRightAction from '../components/SwipeRightAction';
-import MenuBar from '../components/MenuBar';
+import {
+  ListItemWithImage,
+  ListItemSeperator,
+  SwipeRightAction,
+  MenuBar,
+} from '../components';
 
 interface Message {
   id: string;

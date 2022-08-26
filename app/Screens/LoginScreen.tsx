@@ -3,31 +3,36 @@ import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import {useNavigation} from '@react-navigation/native';
 
-import TextInputWithIcon from '../components/TextInputWithIcon';
-import CustomIcon from '../components/CustomIcon';
 import colors from '../config/colors';
-import CustomButton from '../components/CustomButton';
-import ErrorMessage from '../components/ErrorMessage';
+import {
+  TextInputWithIcon,
+  CustomIcon,
+  CustomButton,
+  ErrorMessage,
+} from '../components';
 
 const validationScema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
   password: Yup.string().required().min(4).label('Password'),
 });
 const LoginScreen = () => {
+  const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('../assests/logo.png')} style={styles.logo} />
 
       <Formik
         initialValues={{email: '', password: ''}}
-        onSubmit={value => console.log(value)}
+        onSubmit={value => {
+          console.log(value);
+          navigation.navigate('ListingsScreen');
+        }}
         validationSchema={validationScema}>
         {({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
           <>
             <TextInputWithIcon
-              onChangeText={handleChange('email')}
-              placeholder="Enter your Email"
               Icon={
                 <CustomIcon
                   name="mail-outline"
@@ -36,14 +41,15 @@ const LoginScreen = () => {
                   color={colors.lightgrey}
                 />
               }
-              onBlur={() => setFieldTouched('email')}
+              props={{
+                placeholder: 'Enter Your Email',
+                onBlur: () => setFieldTouched('email'),
+                onChangeText: handleChange('email'),
+              }}
             />
             <ErrorMessage visible={touched.email} text={errors.email} />
 
             <TextInputWithIcon
-              onChangeText={handleChange('password')}
-              onBlur={() => setFieldTouched('password')}
-              placeholder="Enter your Password"
               Icon={
                 <CustomIcon
                   name="lock-closed-outline"
@@ -52,7 +58,12 @@ const LoginScreen = () => {
                   color={colors.lightgrey}
                 />
               }
-              props={{secureTextEntry: true}}
+              props={{
+                placeholder: 'Enter Your Password',
+                secureTextEntry: true,
+                onBlur: () => setFieldTouched('password'),
+                onChangeText: handleChange('password'),
+              }}
             />
             <ErrorMessage visible={touched.password} text={errors.password} />
             <CustomButton

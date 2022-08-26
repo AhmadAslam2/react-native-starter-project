@@ -3,13 +3,14 @@ import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {useNavigation} from '@react-navigation/native';
 
-import ListItemWithImage from '../components/ListItemWithImage';
-import ListItemWithIcon from '../components/ListItemWithIcon';
-import ListItemSeperator from '../components/ListItemSeperator';
-import CustomIcon from '../components/CustomIcon';
-import MenuBar from '../components/MenuBar';
-
 import colors from '../config/colors';
+import {
+  CustomIcon,
+  ListItemSeperator,
+  ListItemWithIcon,
+  ListItemWithImage,
+  MenuBar,
+} from '../components';
 
 interface Data {
   title: string;

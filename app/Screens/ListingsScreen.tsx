@@ -1,42 +1,25 @@
-import {FlatList, ImageSourcePropType, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
+import React, {useState} from 'react';
 
-import React from 'react';
-import Card from '../components/Card';
-import MenuBar from '../components/MenuBar';
-
-interface cardData {
-  id: number;
-  image: ImageSourcePropType;
-  title: string;
-  subtitle: string;
-}
-const Data: cardData[] = [
-  {
-    id: 1,
-    image: {uri: 'https://picsum.photos/400/300'},
-    title: 'Random thing',
-    subtitle: '$300',
-  },
-  {
-    id: 3,
-    image: require('../assests/jacket.jpg'),
-    title: 'Leather jacket',
-    subtitle: '$100',
-  },
-  {
-    id: 2,
-    image: {uri: 'https://picsum.photos/400/300'},
-    title: 'Leather jacket',
-    subtitle: '$50',
-  },
-];
+import {Card, MenuBar} from '../components';
+import {cardData, getData} from '../utils/cardData';
 
 const ListingsScreen = () => {
+  const [Data, setData] = useState(cardData);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchData = () => {
+    setRefreshing(true);
+    setData(getData);
+    setRefreshing(false);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.viewStyle}>
         <FlatList
+          onRefresh={fetchData}
+          refreshing={refreshing}
           data={Data}
           keyExtractor={data => data.id.toString()}
           renderItem={({item}) => (

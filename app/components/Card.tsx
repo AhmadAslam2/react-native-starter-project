@@ -23,7 +23,7 @@ const Card = ({image, title, subtitle}: cardProps) => {
       </TouchableOpacity>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subTitle}>{subtitle}</Text>
+        <Text style={styles.subTitle}>${subtitle}</Text>
       </View>
     </View>
   );

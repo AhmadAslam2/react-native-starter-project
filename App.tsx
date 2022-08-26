@@ -13,13 +13,15 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import MessagesScreen from './app/Screens/MessagesScreen';
-import ListingsScreen from './app/Screens/ListingsScreen';
-import AccountScreen from './app/Screens/AccountScreen';
-import WelcomeScreen from './app/Screens/WelcomeScreen';
-import ListingDetailScreen from './app/Screens/ListingDetailScreen';
-import LoginScreen from './app/Screens/LoginScreen';
-import RegisterScreen from './app/Screens/RegisterScreen';
+import {
+  AccountScreen,
+  ListingDetailScreen,
+  ListingsScreen,
+  LoginScreen,
+  MessagesScreen,
+  RegisterScreen,
+  WelcomeScreen,
+} from './app/Screens';
 
 type StackParams = {
   WelcomeScreen: undefined;
@@ -37,7 +39,7 @@ const App = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="RegisterScreen"
+          initialRouteName="LoginScreen"
           screenOptions={{
             headerShown: false,
           }}>

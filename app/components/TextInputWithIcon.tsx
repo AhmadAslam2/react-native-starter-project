@@ -3,27 +3,15 @@ import React from 'react';
 
 interface TextInputWithIconProps {
   Icon?: React.ReactElement;
-  placeholder?: string;
-  onChangeText?: any;
   props?: TextInputProps;
-  onBlur: any;
 }
-const TextInputWithIcon = ({
-  Icon,
-  placeholder,
-  onChangeText,
-  onBlur,
-  props = {},
-}: TextInputWithIconProps) => {
+const TextInputWithIcon = ({Icon, props = {}}: TextInputWithIconProps) => {
   return (
     <View style={styles.container}>
       {Icon}
       <TextInput
-        onBlur={onBlur}
         style={styles.input}
         clearButtonMode="always"
-        onChangeText={onChangeText}
-        placeholder={placeholder}
         autoCorrect={false}
         autoCapitalize="none"
         {...props}
@@ -41,7 +29,7 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: 'white',
     marginVertical: 10,
-    borderRadius: 15,
+    borderRadius: 10,
   },
   input: {
     flex: 1,

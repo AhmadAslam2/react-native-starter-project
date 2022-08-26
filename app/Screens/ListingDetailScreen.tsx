@@ -1,10 +1,8 @@
 import {StyleSheet, View} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
-
 import React from 'react';
-import Card from '../components/Card';
-import ListItemWithImage from '../components/ListItemWithImage';
-import MenuBar from '../components/MenuBar';
+
+import {Card, ListItemWithImage, MenuBar} from '../components';
 
 const ListingDetailScreen = () => {
   return (

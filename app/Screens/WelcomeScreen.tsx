@@ -3,7 +3,8 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import colors from '../config/colors';
-import CustomButton from '../components/CustomButton';
+import {CustomButton} from '../components';
+
 const WelcomeScreen = () => {
   const navigation = useNavigation<any>();
   return (

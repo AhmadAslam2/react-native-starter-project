@@ -21,7 +21,7 @@ export default CustomButton;
 const styles = StyleSheet.create({
   container: {
     height: 50,
-    margin: 5,
+    marginVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
@@ -29,5 +29,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: 'white',
   },
 });

@@ -3,12 +3,16 @@ import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import {useNavigation} from '@react-navigation/native';
 
-import TextInputWithIcon from '../components/TextInputWithIcon';
-import CustomButton from '../components/CustomButton';
 import colors from '../config/colors';
-import CustomIcon from '../components/CustomIcon';
-import ErrorMessage from '../components/ErrorMessage';
+
+import {
+  TextInputWithIcon,
+  CustomButton,
+  CustomIcon,
+  ErrorMessage,
+} from '../components';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(1).label('Name'),
@@ -16,19 +20,19 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(4).label('Password'),
 });
 const RegisterScreen = () => {
+  const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
       <Formik
         initialValues={{name: '', email: '', password: ''}}
         onSubmit={values => {
           console.log(values);
+          navigation.navigate('ListingsScreen');
         }}
         validationSchema={validationSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (
           <>
             <TextInputWithIcon
-              placeholder="Enter Your Full Name"
-              onChangeText={handleChange('name')}
               Icon={
                 <CustomIcon
                   name="person-outline"
@@ -37,12 +41,14 @@ const RegisterScreen = () => {
                   color={colors.lightgrey}
                 />
               }
-              onBlur={() => setFieldTouched('name')}
+              props={{
+                placeholder: 'Enter Your Full Name',
+                onBlur: () => setFieldTouched('name'),
+                onChangeText: handleChange('name'),
+              }}
             />
             <ErrorMessage text={errors.name} visible={touched.name} />
             <TextInputWithIcon
-              placeholder="Enter Your Email"
-              onChangeText={handleChange('email')}
               Icon={
                 <CustomIcon
                   name="mail-outline"
@@ -51,12 +57,14 @@ const RegisterScreen = () => {
                   color={colors.lightgrey}
                 />
               }
-              onBlur={() => setFieldTouched('email')}
+              props={{
+                placeholder: 'Enter Your Email',
+                onBlur: () => setFieldTouched('email'),
+                onChangeText: handleChange('email'),
+              }}
             />
             <ErrorMessage text={errors.email} visible={touched.email} />
             <TextInputWithIcon
-              placeholder="Set Your Password"
-              onChangeText={handleChange('password')}
               Icon={
                 <CustomIcon
                   name="lock-closed-outline"
@@ -65,8 +73,12 @@ const RegisterScreen = () => {
                   color={colors.lightgrey}
                 />
               }
-              onBlur={() => setFieldTouched('password')}
-              props={{secureTextEntry: true}}
+              props={{
+                placeholder: 'Set Your Password',
+                secureTextEntry: true,
+                onBlur: () => setFieldTouched('password'),
+                onChangeText: handleChange('password'),
+              }}
             />
             <ErrorMessage text={errors.password} visible={touched.password} />
             <CustomButton
