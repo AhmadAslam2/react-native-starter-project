@@ -9,7 +9,6 @@ import {
   ListItemSeperator,
   ListItemWithIcon,
   ListItemWithImage,
-  MenuBar,
 } from '../components';
 
 interface Data {
@@ -85,7 +84,6 @@ const AccountScreen = () => {
           title="Logout"
         />
       </TouchableHighlight>
-      <MenuBar />
     </SafeAreaView>
   );
 };

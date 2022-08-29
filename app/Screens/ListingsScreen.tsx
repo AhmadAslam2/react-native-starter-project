@@ -2,7 +2,7 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import React, {useState} from 'react';
 
-import {Card, MenuBar} from '../components';
+import {Card} from '../components';
 import {cardData, getData} from '../utils/cardData';
 
 const ListingsScreen = () => {
@@ -30,7 +30,6 @@ const ListingsScreen = () => {
             />
           )}
         />
-        <MenuBar />
       </View>
     </SafeAreaView>
   );

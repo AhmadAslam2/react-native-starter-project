@@ -12,6 +12,7 @@ import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {
   AccountScreen,
@@ -32,7 +33,9 @@ type StackParams = {
   LoginScreen: undefined;
   RegisterScreen: undefined;
 };
+
 const Stack = createNativeStackNavigator<StackParams>();
+// const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (

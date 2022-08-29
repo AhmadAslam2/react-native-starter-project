@@ -2,7 +2,7 @@ import {StyleSheet, View} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import React from 'react';
 
-import {Card, ListItemWithImage, MenuBar} from '../components';
+import {Card, ListItemWithImage} from '../components';
 
 const ListingDetailScreen = () => {
   return (
@@ -24,7 +24,6 @@ const ListingDetailScreen = () => {
           description="5 Listings"
         />
       </View>
-      <MenuBar />
     </SafeAreaView>
   );
 };

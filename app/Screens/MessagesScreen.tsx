@@ -6,7 +6,6 @@ import {
   ListItemWithImage,
   ListItemSeperator,
   SwipeRightAction,
-  MenuBar,
 } from '../components';
 
 interface Message {
@@ -83,7 +82,6 @@ const MessagesScreen = () => {
         )}
         ItemSeparatorComponent={ListItemSeperator}
       />
-      <MenuBar />
     </SafeAreaView>
   );
 };
