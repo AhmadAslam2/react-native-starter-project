@@ -1,7 +1,6 @@
 import {FlatList, StyleSheet, TouchableHighlight, View} from 'react-native';
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
-import {useNavigation} from '@react-navigation/native';
 
 import colors from '../config/colors';
 import {
@@ -34,8 +33,11 @@ const listData: Data[] = [
     type: 'ionicon',
   },
 ];
-const AccountScreen = () => {
-  const navigation = useNavigation<any>();
+
+interface AccountScreenProps {
+  toggleUser(): void;
+}
+const AccountScreen = ({toggleUser}: AccountScreenProps) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userView}>
@@ -69,7 +71,7 @@ const AccountScreen = () => {
       </View>
       <TouchableHighlight
         underlayColor={colors.lightgrey}
-        onPress={() => navigation.navigate('WelcomeScreen')}
+        onPress={toggleUser}
         style={styles.logout}>
         <ListItemWithIcon
           Icon={

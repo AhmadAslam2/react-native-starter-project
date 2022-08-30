@@ -8,25 +8,26 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Tabs from './app/navigation/Tab';
-import {LoginScreen, RegisterScreen, WelcomeScreen} from './app/Screens';
+import MainNavigator from './app/navigation/MainNavigator';
+import AuthNavigator from './app/navigation/AuthNavigator';
 
-const Stack = createNativeStackNavigator();
 const App = () => {
+  const [user, setUser] = useState(false);
+  const toggleUser = () => {
+    user ? setUser(false) : setUser(true);
+  };
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
-          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-          <Stack.Screen name="Tabs" component={Tabs} />
-        </Stack.Navigator>
+        {user ? (
+          <MainNavigator toggleUser={toggleUser} />
+        ) : (
+          <AuthNavigator toggleUser={toggleUser} />
+        )}
       </NavigationContainer>
     </SafeAreaProvider>
   );

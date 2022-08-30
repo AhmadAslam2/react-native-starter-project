@@ -17,7 +17,11 @@ const validationScema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
   password: Yup.string().required().min(4).label('Password'),
 });
-const LoginScreen = () => {
+
+interface LoginScreenProps {
+  toggleUser(): void;
+}
+const LoginScreen = ({toggleUser}: LoginScreenProps) => {
   const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
@@ -25,9 +29,9 @@ const LoginScreen = () => {
 
       <Formik
         initialValues={{email: '', password: ''}}
-        onSubmit={value => {
-          console.log(value);
-          navigation.navigate('Tabs');
+        onSubmit={values => {
+          console.log(values);
+          toggleUser();
         }}
         validationSchema={validationScema}>
         {({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (

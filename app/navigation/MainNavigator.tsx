@@ -33,7 +33,10 @@ const icons: {[key: string]: icon} = {
   },
 };
 
-export default function Tabs() {
+interface MainNavigatorProps {
+  toggleUser(): void;
+}
+export default function MainNavigator({toggleUser}: MainNavigatorProps) {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -75,7 +78,9 @@ export default function Tabs() {
       />
       <Tab.Screen
         name="AccountScreen"
-        component={AccountScreen}
+        children={() => {
+          return <AccountScreen toggleUser={toggleUser} />;
+        }}
         options={{tabBarLabel: '', headerShown: false}}
       />
     </Tab.Navigator>
