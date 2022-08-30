@@ -11,7 +11,7 @@ const ListingDetailScreen = () => {
         <Card
           image={require('../assests/jacket.jpg')}
           title="Leather Jacket"
-          subtitle="$100"
+          subtitle="100"
         />
         <ListItemWithImage
           image={require('../assests/profile.jpg')}

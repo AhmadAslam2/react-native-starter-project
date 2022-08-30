@@ -5,7 +5,6 @@ import ErrorMessage from './ErrorMessage';
 import ListItemSeperator from './ListItemSeperator';
 import ListItemWithIcon from './ListItemWithIcon';
 import ListItemWithImage from './ListItemWithImage';
-import MenuBar from './MenuBar';
 import PostItemForm from './PostItemForm';
 import SwipeRightAction from './SwipeRightAction';
 import TextInputWithIcon from './TextInputWithIcon';
@@ -13,7 +12,6 @@ import TextInputWithIcon from './TextInputWithIcon';
 export {
   Card,
   CustomButton,
-  MenuBar,
   CustomIcon,
   ListItemSeperator,
   ErrorMessage,

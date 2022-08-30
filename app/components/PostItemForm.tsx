@@ -11,10 +11,8 @@ import ErrorMessage from './ErrorMessage';
 import CustomButton from './CustomButton';
 import SafeAreaView from 'react-native-safe-area-view';
 import {cardData, cardDataInterface} from '../utils/cardData';
+import {useNavigation} from '@react-navigation/native';
 
-interface PostItemFormProps {
-  toggleVisible: () => void;
-}
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(3).label('Title'),
   price: Yup.number().required().min(1).max(10000).label('Price'),
@@ -30,10 +28,11 @@ const categories: {label: string; value: string}[] = [
   {label: 'Car', value: 'car'},
   {label: 'Bike', value: 'bike'},
 ];
-const PostItemForm = ({toggleVisible}: PostItemFormProps) => {
+const PostItemForm = () => {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
 
+  const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
       <Formik
@@ -128,7 +127,7 @@ const PostItemForm = ({toggleVisible}: PostItemFormProps) => {
               text="Post"
               onPress={() => {
                 handleSubmit();
-                toggleVisible();
+                navigation.goBack();
               }}
               color={colors.primary}
             />

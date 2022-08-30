@@ -4,8 +4,10 @@ import React, {useState} from 'react';
 
 import {Card} from '../components';
 import {cardData, getData} from '../utils/cardData';
+import {useNavigation} from '@react-navigation/native';
 
 const ListingsScreen = () => {
+  const navigation = useNavigation<any>();
   const [Data, setData] = useState(cardData);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -24,6 +26,7 @@ const ListingsScreen = () => {
           keyExtractor={data => data.id.toString()}
           renderItem={({item}) => (
             <Card
+              onPress={() => navigation.navigate('ListingDetailScreen')}
               image={item.image}
               title={item.title}
               subtitle={item.subtitle}

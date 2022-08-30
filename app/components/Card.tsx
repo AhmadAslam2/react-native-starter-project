@@ -13,12 +13,13 @@ interface cardProps {
   image: ImageSourcePropType;
   title: string;
   subtitle: string;
+  onPress?(): void;
 }
 
-const Card = ({image, title, subtitle}: cardProps) => {
+const Card = ({image, title, subtitle, onPress}: cardProps) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <Image resizeMode="stretch" style={styles.image} source={image} />
       </TouchableOpacity>
       <View style={styles.textContainer}>

@@ -1,31 +1,33 @@
 import {Button, StyleSheet, View} from 'react-native';
 import React from 'react';
-import Modal from 'react-native-modal';
 
 import {PostItemForm} from '../components';
+import {useNavigation} from '@react-navigation/native';
+import SafeAreaView from 'react-native-safe-area-view';
 
-interface ModalScreenProps {
-  visible: boolean;
-  toggleVisible: () => void;
-}
-const ModalScreen = ({visible, toggleVisible}: ModalScreenProps) => {
+const ModalScreen = () => {
+  const navigation = useNavigation<any>();
   return (
-    <Modal style={styles.container} isVisible={visible}>
+    <SafeAreaView style={styles.container}>
+      <PostItemForm />
       <View style={styles.closeButton}>
-        <Button color="white" title="X" onPress={toggleVisible} />
+        <Button
+          color="black"
+          title="X"
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
       </View>
-      <PostItemForm toggleVisible={toggleVisible} />
-    </Modal>
+    </SafeAreaView>
   );
 };
 
 export default ModalScreen;
 
 const styles = StyleSheet.create({
-  container: {},
-  closeButton: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
+  container: {
+    margin: 12,
   },
+  closeButton: {},
 });
