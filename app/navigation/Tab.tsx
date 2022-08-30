@@ -4,9 +4,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   MessagesScreen,
   ListingsScreen,
-  AccountScreen,
   ListingDetailScreen,
   ModalScreen,
+  AccountScreen,
 } from '../Screens';
 import {CustomIcon} from '../components';
 import colors from '../config/colors';
