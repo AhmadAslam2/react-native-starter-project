@@ -25,12 +25,12 @@ const WelcomeScreen = () => {
         </View>
         <View>
           <CustomButton
-            onPress={() => navigation.navigate('ListingsScreen')}
+            onPress={() => navigation.navigate('RegisterScreen')}
             color={colors.primary}
             text="REGISTER"
           />
           <CustomButton
-            onPress={() => navigation.navigate('ListingsScreen')}
+            onPress={() => navigation.navigate('LoginScreen')}
             color={colors.secondary}
             text="SIGN IN"
           />

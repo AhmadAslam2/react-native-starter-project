@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import React from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
@@ -27,7 +27,7 @@ const RegisterScreen = () => {
         initialValues={{name: '', email: '', password: ''}}
         onSubmit={values => {
           console.log(values);
-          navigation.navigate('ListingsScreen');
+          navigation.navigate('Tabs');
         }}
         validationSchema={validationSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (
@@ -81,6 +81,9 @@ const RegisterScreen = () => {
               }}
             />
             <ErrorMessage text={errors.password} visible={touched.password} />
+            <Text onPress={() => navigation.navigate('LoginScreen')}>
+              Login
+            </Text>
             <CustomButton
               text="Register"
               onPress={handleSubmit}
