@@ -84,7 +84,9 @@ const RegisterScreen = () => {
               }}
             />
             <ErrorMessage text={errors.password} visible={touched.password} />
-            <Text onPress={() => navigation.navigate('LoginScreen')}>
+            <Text
+              style={styles.LoginLink}
+              onPress={() => navigation.navigate('LoginScreen')}>
               Login
             </Text>
             <CustomButton
@@ -104,5 +106,11 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   container: {
     padding: 15,
+  },
+  LoginLink: {
+    alignSelf: 'flex-end',
+    fontSize: 12,
+    color: '#0969da',
+    marginRight: 5,
   },
 });

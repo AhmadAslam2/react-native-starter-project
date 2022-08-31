@@ -69,7 +69,9 @@ const LoginScreen = () => {
               }}
             />
             <ErrorMessage visible={touched.password} text={errors.password} />
-            <Text onPress={() => navigation.navigate('RegisterScreen')}>
+            <Text
+              style={styles.RegisterLink}
+              onPress={() => navigation.navigate('RegisterScreen')}>
               Register
             </Text>
             <CustomButton
@@ -95,5 +97,11 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     alignSelf: 'center',
+  },
+  RegisterLink: {
+    alignSelf: 'flex-end',
+    fontSize: 12,
+    color: '#0969da',
+    marginRight: 5,
   },
 });
