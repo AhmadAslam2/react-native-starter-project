@@ -10,6 +10,7 @@ import {
   ListItemWithImage,
 } from '../components';
 import {AppContext} from '../utils/AppContext';
+import {storeData} from '../utils/StoreData';
 
 interface Data {
   title: string;
@@ -70,7 +71,10 @@ const AccountScreen = () => {
       </View>
       <TouchableHighlight
         underlayColor={colors.lightgrey}
-        onPress={() => setUser(false)}
+        onPress={() => {
+          setUser(false);
+          storeData(false);
+        }}
         style={styles.logout}>
         <ListItemWithIcon
           Icon={

@@ -14,6 +14,7 @@ import {
   ErrorMessage,
 } from '../components';
 import {AppContext} from '../utils/AppContext';
+import {storeData} from '../utils/StoreData';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(1).label('Name'),
@@ -31,6 +32,7 @@ const RegisterScreen = () => {
         onSubmit={values => {
           console.log(values);
           setUser(true);
+          storeData(true);
         }}
         validationSchema={validationSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (

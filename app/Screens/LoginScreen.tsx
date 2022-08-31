@@ -13,6 +13,7 @@ import {
   CustomButton,
   ErrorMessage,
 } from '../components';
+import {storeData} from '../utils/StoreData';
 
 const validationScema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
@@ -22,6 +23,7 @@ const validationScema = Yup.object().shape({
 const LoginScreen = () => {
   const navigation = useNavigation<any>();
   const {setUser} = useContext(AppContext);
+
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('../assests/logo.png')} style={styles.logo} />
@@ -31,6 +33,7 @@ const LoginScreen = () => {
         onSubmit={values => {
           console.log(values);
           setUser(true);
+          storeData(true);
         }}
         validationSchema={validationScema}>
         {({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
