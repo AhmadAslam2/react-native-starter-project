@@ -18,11 +18,6 @@ const ListingDetailScreen = () => {
         title="Rana William"
         description="5 Listings"
       />
-      <ListItemWithImage
-        image={require('../assests/profile.jpg')}
-        title="Rana William"
-        description="5 Listings"
-      />
     </SafeAreaView>
   );
 };

@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   container: {padding: 10},
   dropdownStyle: {
     borderColor: colors.lightgrey,
-    // borderRadius: 10,
+    borderRadius: 8,
     height: 55,
     marginVertical: 10,
   },

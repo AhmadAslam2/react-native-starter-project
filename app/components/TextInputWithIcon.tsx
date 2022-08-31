@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: 'white',
     marginVertical: 10,
-    // borderRadius: 10,
+    borderRadius: 8,
   },
   input: {
     flex: 1,
