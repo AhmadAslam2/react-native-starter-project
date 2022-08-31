@@ -7,6 +7,7 @@ import {
   ListItemSeperator,
   SwipeRightAction,
 } from '../components';
+import colors from '../config/colors';
 
 interface Message {
   id: string;
@@ -92,5 +93,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
+    backgroundColor: colors.backgrounnd,
   },
 });

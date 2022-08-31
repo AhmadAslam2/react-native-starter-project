@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {Card} from '../components';
 import {cardData, getData} from '../utils/cardData';
 import {useNavigation} from '@react-navigation/native';
+import colors from '../config/colors';
 
 const ListingsScreen = () => {
   const navigation = useNavigation<any>();
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#f1f3f4',
+    backgroundColor: colors.backgrounnd,
     padding: 12,
   },
   viewStyle: {

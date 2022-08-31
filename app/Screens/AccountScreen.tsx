@@ -29,7 +29,7 @@ const listData: Data[] = [
   },
   {
     title: 'My Messages',
-    iconColor: 'black',
+    iconColor: 'white',
     iconName: 'chatbubble-ellipses-outline',
     backgroundColor: colors.secondary,
     type: 'ionicon',
@@ -98,7 +98,7 @@ export default AccountScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: colors.backgrounnd,
   },
   userView: {
     backgroundColor: 'white',

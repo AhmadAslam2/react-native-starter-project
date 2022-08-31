@@ -108,6 +108,8 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   container: {
     padding: 15,
+    backgroundColor: colors.backgrounnd,
+    flex: 1,
   },
   LoginLink: {
     alignSelf: 'flex-end',

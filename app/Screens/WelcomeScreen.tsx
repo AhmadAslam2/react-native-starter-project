@@ -33,7 +33,6 @@ const WelcomeScreen = () => {
             onPress={() => navigation.navigate('LoginScreen')}
             color={colors.secondary}
             text="SIGN IN"
-            textColor="black"
           />
         </View>
       </ImageBackground>

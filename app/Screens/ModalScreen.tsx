@@ -1,23 +1,27 @@
-import {Button, StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-import {PostItemForm} from '../components';
+import {CustomIcon, PostItemForm} from '../components';
 import {useNavigation} from '@react-navigation/native';
 import SafeAreaView from 'react-native-safe-area-view';
+import colors from '../config/colors';
 
 const ModalScreen = () => {
   const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
-      <PostItemForm />
-      <View style={styles.closeButton}>
-        <Button
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.closeButton}>
+        <CustomIcon
+          name="close-circle-outline"
+          type="ionicon"
+          size={25}
           color="black"
-          title="X"
-          onPress={() => {
-            navigation.goBack();
-          }}
         />
+      </TouchableOpacity>
+      <View style={styles.formContainer}>
+        <PostItemForm />
       </View>
     </SafeAreaView>
   );
@@ -27,7 +31,19 @@ export default ModalScreen;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 12,
+    padding: 12,
+    backgroundColor: colors.backgrounnd,
+    flex: 1,
   },
-  closeButton: {},
+  closeButton: {
+    position: 'absolute',
+    paddingTop: 20,
+    top: 20,
+    right: 10,
+    fontWeight: 'bold',
+    borderRadius: 20,
+  },
+  formContainer: {
+    paddingTop: 20,
+  },
 });
