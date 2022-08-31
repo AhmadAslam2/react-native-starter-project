@@ -20,10 +20,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(4).label('Password'),
 });
 
-interface RegisterScreenProps {
-  toggleUser(): void;
-}
-const RegisterScreen = ({toggleUser}: RegisterScreenProps) => {
+const RegisterScreen = () => {
   const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +28,6 @@ const RegisterScreen = ({toggleUser}: RegisterScreenProps) => {
         initialValues={{name: '', email: '', password: ''}}
         onSubmit={values => {
           console.log(values);
-          toggleUser();
         }}
         validationSchema={validationSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (

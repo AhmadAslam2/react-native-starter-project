@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import {AppContext} from '../utils/AppContext';
 import {
   MessagesScreen,
   ListingsScreen,
@@ -33,10 +34,11 @@ const icons: {[key: string]: icon} = {
   },
 };
 
-interface MainNavigatorProps {
-  toggleUser(): void;
-}
-export default function MainNavigator({toggleUser}: MainNavigatorProps) {
+export default function MainNavigator() {
+  const setUser = useContext(AppContext);
+
+  console.log(setUser);
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -79,7 +81,7 @@ export default function MainNavigator({toggleUser}: MainNavigatorProps) {
       <Tab.Screen
         name="AccountScreen"
         children={() => {
-          return <AccountScreen toggleUser={toggleUser} />;
+          return <AccountScreen />;
         }}
         options={{tabBarLabel: '', headerShown: false}}
       />

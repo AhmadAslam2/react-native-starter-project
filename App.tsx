@@ -14,20 +14,17 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import MainNavigator from './app/navigation/MainNavigator';
 import AuthNavigator from './app/navigation/AuthNavigator';
+import {AppContext} from './app/utils/AppContext';
 
 const App = () => {
   const [user, setUser] = useState(false);
-  const toggleUser = () => {
-    user ? setUser(false) : setUser(true);
-  };
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        {user ? (
-          <MainNavigator toggleUser={toggleUser} />
-        ) : (
-          <AuthNavigator toggleUser={toggleUser} />
-        )}
+        <AppContext.Provider value={setUser.toString()}>
+          {user ? <MainNavigator /> : <AuthNavigator />}
+        </AppContext.Provider>
       </NavigationContainer>
     </SafeAreaProvider>
   );

@@ -34,10 +34,7 @@ const listData: Data[] = [
   },
 ];
 
-interface AccountScreenProps {
-  toggleUser(): void;
-}
-const AccountScreen = ({toggleUser}: AccountScreenProps) => {
+const AccountScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userView}>
@@ -71,7 +68,7 @@ const AccountScreen = ({toggleUser}: AccountScreenProps) => {
       </View>
       <TouchableHighlight
         underlayColor={colors.lightgrey}
-        onPress={toggleUser}
+        // onPress={toggleUser}
         style={styles.logout}>
         <ListItemWithIcon
           Icon={
