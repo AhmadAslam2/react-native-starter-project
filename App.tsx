@@ -15,12 +15,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './app/navigation/MainNavigator';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import {AppContext} from './app/utils/AppContext';
+import colors from './app/config/colors';
 
 const App = () => {
   const [user, setUser] = useState(false);
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{backgroundColor: colors.backgrounnd}}>
       <NavigationContainer>
         <AppContext.Provider value={{user, setUser}}>
           {user ? <MainNavigator /> : <AuthNavigator />}

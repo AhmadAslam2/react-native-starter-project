@@ -23,7 +23,7 @@ const WelcomeScreen = () => {
             <Text style={styles.logoTextHalf}> Stuff</Text>
           </Text>
         </View>
-        <View>
+        <View style={styles.buttonContainer}>
           <CustomButton
             onPress={() => navigation.navigate('RegisterScreen')}
             color={colors.primary}
@@ -33,6 +33,7 @@ const WelcomeScreen = () => {
             onPress={() => navigation.navigate('LoginScreen')}
             color={colors.secondary}
             text="SIGN IN"
+            textColor="black"
           />
         </View>
       </ImageBackground>
@@ -45,6 +46,9 @@ export default WelcomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  buttonContainer: {
+    marginHorizontal: 10,
   },
   image: {
     flex: 1,
@@ -71,6 +75,6 @@ const styles = StyleSheet.create({
     marginTop: -25,
   },
   logoTextHalf: {
-    color: colors.primary,
+    color: colors.secondary,
   },
 });

@@ -28,7 +28,7 @@ const listData: Data[] = [
   },
   {
     title: 'My Messages',
-    iconColor: 'white',
+    iconColor: 'black',
     iconName: 'chatbubble-ellipses-outline',
     backgroundColor: colors.secondary,
     type: 'ionicon',
@@ -75,10 +75,10 @@ const AccountScreen = () => {
         <ListItemWithIcon
           Icon={
             <CustomIcon
-              backgroundColor="#ffe66d"
+              backgroundColor={colors.danger}
               name="log-out-outline"
               size={25}
-              color="black"
+              color="white"
               type="ionicon"
             />
           }

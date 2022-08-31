@@ -35,7 +35,7 @@ export default Card;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
-    borderRadius: 10,
+    // borderRadius: 10,
     overflow: 'hidden',
     marginVertical: 10,
   },

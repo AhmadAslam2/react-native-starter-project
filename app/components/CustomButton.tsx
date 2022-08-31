@@ -4,15 +4,16 @@ import React from 'react';
 interface CustomButtonProps {
   color: string;
   text: string;
+  textColor?: string;
   onPress(): void;
 }
 
-const CustomButton = ({color, text, onPress}: CustomButtonProps) => {
+const CustomButton = ({color, text, onPress, textColor}: CustomButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[styles.container, {backgroundColor: color}]}>
-      <Text style={styles.text}>{text}</Text>
+      <Text style={[styles.text, {color: textColor ?? 'white'}]}>{text}</Text>
     </TouchableOpacity>
   );
 };
@@ -24,11 +25,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
   },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white',
   },
 });

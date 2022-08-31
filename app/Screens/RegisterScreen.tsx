@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   LoginLink: {
     alignSelf: 'flex-end',
-    fontSize: 12,
+    fontSize: 14,
     color: '#0969da',
     marginRight: 5,
   },

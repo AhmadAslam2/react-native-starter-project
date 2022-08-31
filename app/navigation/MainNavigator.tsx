@@ -10,6 +10,7 @@ import {
   AccountScreen,
 } from '../Screens';
 import {CustomIcon} from '../components';
+import colors from '../config/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +43,7 @@ export default function MainNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        tabBarActiveTintColor: 'red',
+        tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: 'grey',
         tabBarIcon: ({focused}) => {
           return (
@@ -50,7 +51,7 @@ export default function MainNavigator() {
               name={icons[route.name].name}
               type="ionicon"
               size={25}
-              color={focused ? 'red' : 'grey'}
+              color={focused ? colors.primary : 'grey'}
             />
           );
         },

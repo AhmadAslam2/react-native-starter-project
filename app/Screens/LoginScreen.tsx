@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   RegisterLink: {
     alignSelf: 'flex-end',
-    fontSize: 12,
+    fontSize: 14,
     color: '#0969da',
     marginRight: 5,
   },
