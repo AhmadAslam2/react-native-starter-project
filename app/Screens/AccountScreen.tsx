@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, TouchableHighlight, View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 
 import colors from '../config/colors';
@@ -9,6 +9,7 @@ import {
   ListItemWithIcon,
   ListItemWithImage,
 } from '../components';
+import {AppContext} from '../utils/AppContext';
 
 interface Data {
   title: string;
@@ -35,6 +36,7 @@ const listData: Data[] = [
 ];
 
 const AccountScreen = () => {
+  const {setUser} = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userView}>
@@ -68,7 +70,7 @@ const AccountScreen = () => {
       </View>
       <TouchableHighlight
         underlayColor={colors.lightgrey}
-        // onPress={toggleUser}
+        onPress={() => setUser(false)}
         style={styles.logout}>
         <ListItemWithIcon
           Icon={

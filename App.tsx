@@ -22,7 +22,7 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <AppContext.Provider value={setUser.toString()}>
+        <AppContext.Provider value={{user, setUser}}>
           {user ? <MainNavigator /> : <AuthNavigator />}
         </AppContext.Provider>
       </NavigationContainer>

@@ -1,3 +1,11 @@
-import {createContext} from 'react';
+import {createContext, Dispatch, SetStateAction} from 'react';
 
-export const AppContext = createContext('Default');
+interface AppContextInterface {
+  user: boolean;
+  setUser: Dispatch<SetStateAction<boolean>>;
+}
+
+export const AppContext = createContext<AppContextInterface>({
+  user: false,
+  setUser: () => true,
+});

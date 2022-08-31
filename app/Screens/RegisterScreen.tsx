@@ -1,5 +1,5 @@
 import {StyleSheet, Text} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -13,6 +13,7 @@ import {
   CustomIcon,
   ErrorMessage,
 } from '../components';
+import {AppContext} from '../utils/AppContext';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(1).label('Name'),
@@ -22,12 +23,14 @@ const validationSchema = Yup.object().shape({
 
 const RegisterScreen = () => {
   const navigation = useNavigation<any>();
+  const {setUser} = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <Formik
         initialValues={{name: '', email: '', password: ''}}
         onSubmit={values => {
           console.log(values);
+          setUser(true);
         }}
         validationSchema={validationSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (

@@ -1,9 +1,10 @@
 import {Image, StyleSheet, Text} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {useNavigation} from '@react-navigation/native';
+import {AppContext} from '../utils/AppContext';
 
 import colors from '../config/colors';
 import {
@@ -20,6 +21,7 @@ const validationScema = Yup.object().shape({
 
 const LoginScreen = () => {
   const navigation = useNavigation<any>();
+  const {setUser} = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('../assests/logo.png')} style={styles.logo} />
@@ -28,6 +30,7 @@ const LoginScreen = () => {
         initialValues={{email: '', password: ''}}
         onSubmit={values => {
           console.log(values);
+          setUser(true);
         }}
         validationSchema={validationScema}>
         {({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
