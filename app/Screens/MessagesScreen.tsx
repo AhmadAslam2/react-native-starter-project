@@ -1,4 +1,4 @@
-import {FlatList, ImageSourcePropType, StyleSheet} from 'react-native';
+import {FlatList, ImageSourcePropType, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 
@@ -6,6 +6,7 @@ import {
   ListItemWithImage,
   ListItemSeperator,
   SwipeRightAction,
+  CustomIcon,
 } from '../components';
 import colors from '../config/colors';
 
@@ -72,14 +73,22 @@ const MessagesScreen = () => {
         data={messages}
         keyExtractor={message => message.id}
         renderItem={({item}) => (
-          <ListItemWithImage
-            image={item.image}
-            title={item.title}
-            description={item.description}
-            renderRightActions={() => (
-              <SwipeRightAction onPress={() => handleDelete(item.id)} />
-            )}
-          />
+          <View style={styles.renderItemStyle}>
+            <ListItemWithImage
+              image={item.image}
+              title={item.title}
+              description={item.description}
+              renderRightActions={() => (
+                <SwipeRightAction onPress={() => handleDelete(item.id)} />
+              )}
+            />
+            <CustomIcon
+              name="chevron-forward-outline"
+              type="ionicon"
+              size={20}
+              color="grey"
+            />
+          </View>
         )}
         ItemSeparatorComponent={ListItemSeperator}
       />
@@ -94,5 +103,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 15,
     backgroundColor: colors.backgrounnd,
+  },
+  renderItemStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

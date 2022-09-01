@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {AppContext} from '../utils/AppContext';
 import {
   MessagesScreen,
   ListingsScreen,
@@ -38,10 +37,6 @@ const icons: {[key: string]: icon} = {
 };
 
 export default function MainNavigator() {
-  const setUser = useContext(AppContext);
-
-  console.log(setUser);
-
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
