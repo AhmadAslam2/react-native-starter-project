@@ -26,7 +26,7 @@ const icons: {[key: string]: icon} = {
     name: 'chatbubble-ellipses-outline',
   },
   ModalScreen: {
-    name: 'add-circle-outline',
+    name: 'add-circle',
     size: 40,
   },
   ListingDetailScreen: {
@@ -55,21 +55,18 @@ export default function MainNavigator() {
           left: 20,
           right: 20,
           borderRadius: 15,
-          height: 60,
-          paddingTop: 25,
+          height: 70,
+        },
+        tabBarItemStyle: {
+          height: 70,
         },
         tabBarIcon: ({focused}) => {
           return (
             <CustomIcon
-              backgroundColor={
-                icons[route.name].name === 'ModalScreen'
-                  ? `${colors.primary}`
-                  : ''
-              }
               name={icons[route.name].name}
               type="ionicon"
-              size={icons[route.name].size ?? 25}
-              color={focused ? colors.primary : 'grey'}
+              size={icons[route.name].size ?? 30}
+              color={focused ? colors.primary : colors.secondary}
             />
           );
         },

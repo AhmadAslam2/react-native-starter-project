@@ -16,14 +16,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MainNavigator from './app/navigation/MainNavigator';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import {AppContext} from './app/utils/AppContext';
+import SplashNavigator from './app/navigation/SplashNavigator';
 
 const App = () => {
-  const [user, setUser] = useState(false);
-
-  const getData = async () => {
+  const [user, setUser] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const getData = () => {
     try {
-      const response = await AsyncStorage.getItem('user');
-      setUser(response != null ? JSON.parse(response) : false);
+      setTimeout(async () => {
+        const response = await AsyncStorage.getItem('user');
+        setUser(response != null ? JSON.parse(response) : false);
+        setLoading(false);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -33,7 +37,13 @@ const App = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <AppContext.Provider value={{user, setUser}}>
-          {user ? <MainNavigator /> : <AuthNavigator />}
+          {loading ? (
+            <SplashNavigator />
+          ) : user ? (
+            <MainNavigator />
+          ) : (
+            <AuthNavigator />
+          )}
         </AppContext.Provider>
       </NavigationContainer>
     </SafeAreaProvider>

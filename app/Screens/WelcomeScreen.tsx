@@ -1,4 +1,4 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 
@@ -13,15 +13,15 @@ const WelcomeScreen = () => {
         style={styles.image}
         source={require('../assests/welcomScreenImage.jpg')}>
         <View style={styles.logoContainer}>
-          <Image
+          {/* <Image
             style={styles.logo}
             resizeMode="contain"
             source={require('../assests/logo.png')}
-          />
-          <Text style={styles.logoText}>
+          /> */}
+          {/* <Text style={styles.logoText}>
             Sell Your
             <Text style={styles.logoTextHalf}> Stuff</Text>
-          </Text>
+          </Text> */}
         </View>
         <View style={styles.buttonContainer}>
           <CustomButton
@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    shadowOffset: {width: 10, height: 10},
-    shadowColor: colors.secondary,
-    shadowRadius: 20,
-    shadowOpacity: 1,
+    // shadowOffset: {width: 10, height: 10},
+    // shadowColor: colors.secondary,
+    // shadowRadius: 20,
+    // shadowOpacity: 1,
   },
   logoText: {
     fontSize: 25,

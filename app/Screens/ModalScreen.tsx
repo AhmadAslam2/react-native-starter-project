@@ -37,11 +37,12 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    paddingTop: 20,
+    marginTop: 20,
     top: 20,
     right: 10,
     fontWeight: 'bold',
     borderRadius: 20,
+    zIndex: 1,
   },
   formContainer: {
     paddingTop: 20,
