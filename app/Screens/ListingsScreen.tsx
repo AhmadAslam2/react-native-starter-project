@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.backgrounnd,
     padding: 12,
+    //Figure out a better way for this.
+    paddingBottom: 95,
   },
   viewStyle: {
     maxWidth: '100%',
