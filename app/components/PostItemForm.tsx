@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -10,8 +10,9 @@ import colors from '../config/colors';
 import ErrorMessage from './ErrorMessage';
 import CustomButton from './CustomButton';
 import SafeAreaView from 'react-native-safe-area-view';
-import {cardData, cardDataInterface} from '../utils/cardData';
+import {cardDataInterface} from '../utils/cardData';
 import {useNavigation} from '@react-navigation/native';
+import {AppContext} from '../utils/AppContext';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(3).label('Title'),
@@ -31,8 +32,8 @@ const categories: {label: string; value: string}[] = [
 const PostItemForm = () => {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
-
   const navigation = useNavigation<any>();
+  const {Data, setData} = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <Formik
@@ -49,7 +50,8 @@ const PostItemForm = () => {
             subtitle: values.price.toString(),
             image: {uri: 'https://picsum.photos/400/400'},
           };
-          cardData.unshift(newCardEntry);
+          const newData = [newCardEntry, ...Data];
+          setData(newData);
         }}
         validationSchema={validationSchema}>
         {({

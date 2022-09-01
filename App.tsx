@@ -17,10 +17,12 @@ import MainNavigator from './app/navigation/MainNavigator';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import {AppContext} from './app/utils/AppContext';
 import SplashNavigator from './app/navigation/SplashNavigator';
+import {cardData} from './app/utils/cardData';
 
 const App = () => {
   const [user, setUser] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [Data, setData] = useState(cardData);
   const getData = () => {
     try {
       setTimeout(async () => {
@@ -36,7 +38,7 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <AppContext.Provider value={{user, setUser}}>
+        <AppContext.Provider value={{user, setUser, Data, setData}}>
           {loading ? (
             <SplashNavigator />
           ) : user ? (
