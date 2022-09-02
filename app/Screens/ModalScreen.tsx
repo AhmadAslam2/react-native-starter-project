@@ -29,9 +29,9 @@ const ModalScreen = () => {
         />
       </TouchableOpacity>
       <View style={styles.imagePickerContainer}>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {imageUris.map(uri => (
-            <Image source={{uri: uri}} style={styles.imageStyle} />
+            <Image key={uri} source={{uri: uri}} style={styles.imageStyle} />
           ))}
           <AppImagePicker setImageUris={setImageUris} imageUris={imageUris} />
         </ScrollView>
