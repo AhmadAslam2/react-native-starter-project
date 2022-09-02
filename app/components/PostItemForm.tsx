@@ -29,26 +29,29 @@ const categories: {label: string; value: string}[] = [
   {label: 'Car', value: 'car'},
   {label: 'Bike', value: 'bike'},
 ];
+
 const PostItemForm = () => {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
   const navigation = useNavigation<any>();
   const {Data, setData} = useContext(AppContext);
+
+  const initialValues = {
+    title: '',
+    price: 0,
+    category: '',
+    description: '',
+  };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <Formik
-        initialValues={{
-          title: '',
-          price: 0,
-          category: '',
-          description: '',
-        }}
+        initialValues={initialValues}
         onSubmit={values => {
           const newCardEntry: cardDataInterface = {
             id: Math.random(),
             title: values.title,
             subtitle: values.price.toString(),
-            image: {uri: 'https://picsum.photos/400/400'},
+            image: {uri: '../assests/jacket.jpg'},
           };
           const newData = [newCardEntry, ...Data];
           setData(newData);
@@ -143,7 +146,6 @@ const PostItemForm = () => {
 export default PostItemForm;
 
 const styles = StyleSheet.create({
-  container: {padding: 10},
   dropdownStyle: {
     borderColor: colors.lightgrey,
     borderRadius: 8,
