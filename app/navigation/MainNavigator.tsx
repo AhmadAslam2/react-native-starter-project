@@ -1,10 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {ModalScreen, AccountScreen} from '../Screens';
+import {ModalScreen} from '../Screens';
 import {CustomIcon} from '../components';
 import colors from '../config/colors';
 import HomeNavigatorStack from './HomeNavigatorStack';
+import AccountNavigatorStack from './AccountNavigatorStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +21,7 @@ const icons: {[key: string]: icon} = {
     name: 'add-circle',
     size: 40,
   },
-  AccountScreen: {
+  AccountTab: {
     name: 'person-outline',
   },
 };
@@ -61,7 +62,7 @@ export default function MainNavigator() {
         component={ModalScreen}
         options={{tabBarIconStyle: {zIndex: 12}}}
       />
-      <Tab.Screen name="AccountScreen" component={AccountScreen} />
+      <Tab.Screen name="AccountTab" component={AccountNavigatorStack} />
     </Tab.Navigator>
   );
 }

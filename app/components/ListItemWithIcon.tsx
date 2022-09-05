@@ -1,24 +1,28 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React from 'react';
 
 interface ListItemWithIconProps {
   Icon: any;
   title: string;
   description?: string;
+  onPress?(): void;
 }
 const ListItemWithIcon = ({
   Icon,
   title = 'Default Title',
   description,
+  onPress,
 }: ListItemWithIconProps) => {
   return (
-    <View style={styles.container}>
-      {Icon}
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{title}</Text>
-        {description && <Text style={styles.description}>{description}</Text>}
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container}>
+        {Icon}
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{title}</Text>
+          {description && <Text style={styles.description}>{description}</Text>}
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

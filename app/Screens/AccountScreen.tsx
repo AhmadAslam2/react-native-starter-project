@@ -11,6 +11,7 @@ import {
 } from '../components';
 import {AppContext} from '../utils/AppContext';
 import {storeData} from '../utils/StoreData';
+import {useNavigation} from '@react-navigation/native';
 
 interface Data {
   title: string;
@@ -18,6 +19,7 @@ interface Data {
   iconName: string;
   backgroundColor: string;
   type: string;
+  navigation?: string;
 }
 const listData: Data[] = [
   {
@@ -26,6 +28,7 @@ const listData: Data[] = [
     iconName: 'list-outline',
     backgroundColor: colors.primary,
     type: 'ionicon',
+    navigation: 'ListingsScreen',
   },
   {
     title: 'My Messages',
@@ -33,11 +36,13 @@ const listData: Data[] = [
     iconName: 'chatbubble-ellipses-outline',
     backgroundColor: colors.secondary,
     type: 'ionicon',
+    navigation: 'MessagesScreen',
   },
 ];
 
 const AccountScreen = () => {
   const {setUser} = useContext(AppContext);
+  const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userView}>
@@ -54,6 +59,7 @@ const AccountScreen = () => {
           keyExtractor={data => data.title}
           renderItem={({item}) => (
             <ListItemWithIcon
+              onPress={() => navigation.navigate(item.navigation)}
               title={item.title}
               Icon={
                 <CustomIcon
