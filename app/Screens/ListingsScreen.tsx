@@ -22,7 +22,7 @@ const ListingsScreen = () => {
           keyExtractor={data => data.id.toString()}
           renderItem={({item}) => (
             <Card
-              onPress={() => navigation.navigate('ListingDetailScreen')}
+              onPress={() => navigation.navigate('ListingDetailScreen', {item})}
               image={item.image}
               title={item.title}
               subtitle={item.subtitle}
