@@ -1,15 +1,10 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {
-  MessagesScreen,
-  ListingsScreen,
-  ListingDetailScreen,
-  ModalScreen,
-  AccountScreen,
-} from '../Screens';
+import {ModalScreen, AccountScreen} from '../Screens';
 import {CustomIcon} from '../components';
 import colors from '../config/colors';
+import HomeNavigatorStack from './HomeNavigatorStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,18 +13,12 @@ interface icon {
   size?: number;
 }
 const icons: {[key: string]: icon} = {
-  ListingsScreen: {
-    name: 'list-outline',
-  },
-  MessagesScreen: {
-    name: 'chatbubble-ellipses-outline',
+  HomeTab: {
+    name: 'home-outline',
   },
   ModalScreen: {
     name: 'add-circle',
     size: 40,
-  },
-  ListingDetailScreen: {
-    name: 'document-text-outline',
   },
   AccountScreen: {
     name: 'person-outline',
@@ -66,10 +55,12 @@ export default function MainNavigator() {
           );
         },
       })}>
-      <Tab.Screen name="ListingsScreen" component={ListingsScreen} />
-      <Tab.Screen name="MessagesScreen" component={MessagesScreen} />
-      <Tab.Screen name="ModalScreen" component={ModalScreen} />
-      <Tab.Screen name="ListingDetailScreen" component={ListingDetailScreen} />
+      <Tab.Screen name="HomeTab" component={HomeNavigatorStack} />
+      <Tab.Screen
+        name="ModalScreen"
+        component={ModalScreen}
+        options={{tabBarIconStyle: {zIndex: 12}}}
+      />
       <Tab.Screen name="AccountScreen" component={AccountScreen} />
     </Tab.Navigator>
   );

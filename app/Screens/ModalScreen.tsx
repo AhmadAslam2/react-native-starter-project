@@ -16,8 +16,8 @@ import AppImagePicker from '../components/AppImagePicker';
 const ModalScreen = () => {
   const [imageUris, setImageUris] = useState<string[]>([]);
   const navigation = useNavigation<any>();
-
   const scrollView = useRef<any>();
+
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity

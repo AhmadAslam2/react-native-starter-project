@@ -1,11 +1,13 @@
-import {StyleSheet} from 'react-native';
+import {Button, StyleSheet} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
 import React from 'react';
 
 import {Card, ListItemWithImage} from '../components';
 import colors from '../config/colors';
+import {useNavigation} from '@react-navigation/native';
 
 const ListingDetailScreen = () => {
+  const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
       <Card
@@ -17,6 +19,10 @@ const ListingDetailScreen = () => {
         image={require('../assests/profile.jpg')}
         title="Rana William"
         description="5 Listings"
+      />
+      <Button
+        title="Message"
+        onPress={() => navigation.navigate('MessagesScreen')}
       />
     </SafeAreaView>
   );
