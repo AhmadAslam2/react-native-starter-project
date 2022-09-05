@@ -30,7 +30,11 @@ const categories: {label: string; value: string}[] = [
   {label: 'Bike', value: 'bike'},
 ];
 
-const PostItemForm = () => {
+interface PostItemFormProps {
+  imageUris: string[];
+}
+
+const PostItemForm = ({imageUris}: PostItemFormProps) => {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
   const navigation = useNavigation<any>();
@@ -51,7 +55,7 @@ const PostItemForm = () => {
             id: Math.random(),
             title: values.title,
             subtitle: values.price.toString(),
-            image: {uri: '../assests/jacket.jpg'},
+            image: {uri: imageUris[0] ?? '../assests/jacket.jpg'},
           };
           const newData = [newCardEntry, ...Data];
           setData(newData);

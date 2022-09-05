@@ -47,18 +47,6 @@ let _messages: Message[] = [
     description: 'I am under waterr woooo',
     image: require('../assests/profile.jpg'),
   },
-  {
-    id: '53',
-    title: 'Rana William',
-    description: 'I am under waterr woooo',
-    image: require('../assests/profile.jpg'),
-  },
-  {
-    id: '331',
-    title: 'Rana William',
-    description: 'I am under waterr woooo',
-    image: require('../assests/profile.jpg'),
-  },
 ];
 
 const MessagesScreen = () => {

@@ -1,10 +1,4 @@
-import {
-  // Image,
-  StyleSheet,
-  // Alert,
-  TouchableOpacity,
-  // TouchableWithoutFeedback,
-} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
 import SafeAreaView from 'react-native-safe-area-view';
