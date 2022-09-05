@@ -27,27 +27,6 @@ const AppImagePicker = ({imageUris, setImageUris}: AppImagePickerProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* {imageUri && (
-        <TouchableWithoutFeedback
-          onPress={() =>
-            Alert.alert(
-              'Delete',
-              'Are you sure you want to delete this image?',
-              [
-                {
-                  text: 'Yes',
-                  onPress: () => setImageUri(null),
-                },
-                {
-                  text: 'Cancel',
-                  style: 'cancel',
-                },
-              ],
-            )
-          }>
-          <Image source={{uri: imageUri}} style={styles.imageStyle} />
-        </TouchableWithoutFeedback>
-      )} */}
       <TouchableOpacity style={styles.selectButton} onPress={selectImage}>
         <CustomIcon
           name="camera-outline"

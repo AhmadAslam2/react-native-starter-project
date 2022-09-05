@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import {CustomIcon, PostItemForm} from '../components';
 import {useNavigation} from '@react-navigation/native';
@@ -16,6 +16,8 @@ import AppImagePicker from '../components/AppImagePicker';
 const ModalScreen = () => {
   const [imageUris, setImageUris] = useState<string[]>([]);
   const navigation = useNavigation<any>();
+
+  const scrollView = useRef<any>();
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
@@ -29,7 +31,11 @@ const ModalScreen = () => {
         />
       </TouchableOpacity>
       <View style={styles.imagePickerContainer}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          onContentSizeChange={() => scrollView?.current?.scrollToEnd()}
+          ref={scrollView}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
           {imageUris.map(uri => (
             <Image key={uri} source={{uri: uri}} style={styles.imageStyle} />
           ))}
