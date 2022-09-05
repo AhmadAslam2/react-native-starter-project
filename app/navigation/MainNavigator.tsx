@@ -15,14 +15,14 @@ interface icon {
 }
 const icons: {[key: string]: icon} = {
   HomeTab: {
-    name: 'home-outline',
+    name: 'home',
   },
   ModalScreen: {
     name: 'add-circle',
     size: 40,
   },
   AccountTab: {
-    name: 'person-outline',
+    name: 'person',
   },
 };
 
@@ -51,7 +51,7 @@ export default function MainNavigator() {
               name={icons[route.name].name}
               type="ionicon"
               size={icons[route.name].size ?? 30}
-              color={focused ? colors.primary : colors.secondary}
+              color={focused ? colors.primary : 'grey'}
             />
           );
         },
