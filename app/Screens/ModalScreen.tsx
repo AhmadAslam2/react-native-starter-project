@@ -34,7 +34,7 @@ const ModalScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.navigate('ListingsScreen')}
         style={styles.closeButton}>
         <CustomIcon
           name="close-circle-outline"
