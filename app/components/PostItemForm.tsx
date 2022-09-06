@@ -1,72 +1,76 @@
-import {StyleSheet} from 'react-native';
-import React, {useContext, useState} from 'react';
+import {
+  Alert,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useContext, useRef, useState} from 'react';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import DropDownPicker from 'react-native-dropdown-picker';
+import SafeAreaView from 'react-native-safe-area-view';
+import {useNavigation} from '@react-navigation/native';
 
 import TextInputWithIcon from './TextInputWithIcon';
 import CustomIcon from './CustomIcon';
 import colors from '../config/colors';
 import ErrorMessage from './ErrorMessage';
 import CustomButton from './CustomButton';
-import SafeAreaView from 'react-native-safe-area-view';
 import {cardDataInterface} from '../utils/cardData';
-import {useNavigation} from '@react-navigation/native';
 import {AppContext} from '../utils/AppContext';
+import {categories} from '../utils/pickerCategories';
+import postFormSchema from '../utils/validationSchema/postFormSchema';
+import AppImagePicker from './AppImagePicker';
 
-const validationSchema = Yup.object().shape({
-  title: Yup.string().required().min(3).label('Title'),
-  price: Yup.number()
-    .required()
-    .min(1)
-    .max(10000)
-    .label('Price')
-    .typeError('Price can only be number'),
-  category: Yup.string().required().label('Category'),
-  description: Yup.string().required().label('Description'),
-});
-const categories: {label: string; value: string}[] = [
-  {label: 'Jacket', value: 'jacket'},
-  {label: 'Chair', value: 'chair'},
-  {label: 'Desk', value: 'desk'},
-  {label: 'Table', value: 'table'},
-  {label: 'Car', value: 'car'},
-  {label: 'Bike', value: 'bike'},
-];
 const initialValues = {
   title: '',
   price: 0,
   category: '',
   description: '',
 };
-interface PostItemFormProps {
-  imageUris: string[];
-  setImageUris: any;
-}
-const PostItemForm = ({imageUris, setImageUris}: PostItemFormProps) => {
+const PostItemForm = () => {
+  const [imageUris, setImageUris] = useState<string[]>([]);
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
   const navigation = useNavigation<any>();
   const {Data, setData} = useContext(AppContext);
+  const scrollView = useRef<any>();
 
+  const onSubmit = (values: any, resetForm: any) => {
+    const newCardEntry: cardDataInterface = {
+      id: Math.random(),
+      title: values.title,
+      subtitle: values.price.toString(),
+      image: {uri: imageUris[0] ?? '../assests/jacket.jpg'},
+    };
+    const newData = [newCardEntry, ...Data];
+    setData(newData);
+    setImageUris([]);
+    resetForm({});
+    navigation.navigate('ListingsScreen');
+  };
+
+  const removeImage = (imageUri: string) => {
+    Alert.alert('Delete', 'Are you sure you want to delete this image?', [
+      {
+        text: 'Yes',
+        onPress: () => setImageUris(imageUris.filter(uri => uri !== imageUri)),
+      },
+      {
+        text: 'Cancel',
+      },
+    ]);
+  };
   return (
     <SafeAreaView>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, {resetForm}) => {
-          const newCardEntry: cardDataInterface = {
-            id: Math.random(),
-            title: values.title,
-            subtitle: values.price.toString(),
-            image: {uri: imageUris[0] ?? '../assests/jacket.jpg'},
-          };
-          const newData = [newCardEntry, ...Data];
-          setData(newData);
-          setImageUris([]);
-          resetForm({});
-          navigation.navigate('ListingsScreen');
+          onSubmit(values, resetForm);
         }}
-        validationSchema={validationSchema}>
+        validationSchema={postFormSchema}>
         {({
           values,
           handleSubmit,
@@ -77,6 +81,30 @@ const PostItemForm = ({imageUris, setImageUris}: PostItemFormProps) => {
           setFieldValue,
         }) => (
           <>
+            {/* we need to refactor this */}
+            <View style={styles.imagePickerContainer}>
+              <ScrollView
+                onContentSizeChange={() => scrollView?.current?.scrollToEnd()}
+                ref={scrollView}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                {imageUris.map(uri => (
+                  <TouchableOpacity key={uri} onPress={() => removeImage(uri)}>
+                    <Image source={{uri: uri}} style={styles.imageStyle} />
+                  </TouchableOpacity>
+                ))}
+                <AppImagePicker
+                  setImageUris={setImageUris}
+                  imageUris={imageUris}
+                />
+              </ScrollView>
+            </View>
+            {!imageUris.length && (
+              <Text style={styles.errortext}>
+                Please select atleast one image
+              </Text>
+            )}
+            {/* we need to refactor this */}
             <TextInputWithIcon
               Icon={
                 <CustomIcon
@@ -125,6 +153,7 @@ const PostItemForm = ({imageUris, setImageUris}: PostItemFormProps) => {
               items={categories}
               onChangeValue={itemvalue => setFieldValue('category', itemvalue)}
             />
+            <ErrorMessage text={errors.category} visible={touched.category} />
             <TextInputWithIcon
               Icon={
                 <CustomIcon
@@ -148,7 +177,7 @@ const PostItemForm = ({imageUris, setImageUris}: PostItemFormProps) => {
             <CustomButton
               text="Post"
               onPress={() => {
-                handleSubmit();
+                !!imageUris.length && handleSubmit();
               }}
               color={colors.primary}
             />
@@ -177,5 +206,19 @@ const styles = StyleSheet.create({
   listItemContainerStyle: {
     borderBottomColor: 'lightgrey',
     borderBottomWidth: 0.5,
+  },
+  imageStyle: {
+    width: 100,
+    height: 100,
+    borderRadius: 8,
+    marginRight: 10,
+  },
+  imagePickerContainer: {
+    flexDirection: 'row',
+    marginVertical: 10,
+  },
+  errortext: {
+    color: 'red',
+    fontSize: 12,
   },
 });
