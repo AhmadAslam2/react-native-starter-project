@@ -13,16 +13,17 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import SafeAreaView from 'react-native-safe-area-view';
 import {useNavigation} from '@react-navigation/native';
 
-import TextInputWithIcon from './TextInputWithIcon';
-import CustomIcon from './CustomIcon';
+import {
+  AppImagePicker,
+  CustomButton,
+  CustomIcon,
+  ErrorMessage,
+  TextInputWithIcon,
+} from '.';
 import colors from '../config/colors';
-import ErrorMessage from './ErrorMessage';
-import CustomButton from './CustomButton';
+import {postFormSchema} from '../utils/validationSchema';
+import {AppContext, categories} from '../utils';
 import {cardDataInterface} from '../utils/cardData';
-import {AppContext} from '../utils/AppContext';
-import {categories} from '../utils/pickerCategories';
-import postFormSchema from '../utils/validationSchema/postFormSchema';
-import AppImagePicker from './AppImagePicker';
 
 const initialValues = {
   title: '',
@@ -49,6 +50,7 @@ const PostItemForm = () => {
     setData(newData);
     setImageUris([]);
     resetForm({});
+    setValue(null);
     navigation.navigate('ListingsScreen');
   };
 

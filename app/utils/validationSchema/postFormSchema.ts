@@ -9,5 +9,5 @@ export default Yup.object().shape({
     .label('Price')
     .typeError('Price can only be number'),
   category: Yup.string().required('This field is required').label('Category'),
-  description: Yup.string().required().label('Description'),
+  description: Yup.string().label('Description'),
 });

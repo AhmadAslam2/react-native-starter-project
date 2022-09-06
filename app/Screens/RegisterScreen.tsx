@@ -2,11 +2,9 @@ import {StyleSheet, Text} from 'react-native';
 import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import {useNavigation} from '@react-navigation/native';
 
 import colors from '../config/colors';
-
 import {
   TextInputWithIcon,
   CustomButton,
@@ -15,12 +13,7 @@ import {
 } from '../components';
 import {AppContext} from '../utils/AppContext';
 import {storeData} from '../utils/StoreData';
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string().required().min(1).label('Name'),
-  email: Yup.string().required().email().label('Email'),
-  password: Yup.string().required().min(4).label('Password'),
-});
+import registerFormSchema from '../utils/validationSchema/registerFormSchema';
 
 const RegisterScreen = () => {
   const navigation = useNavigation<any>();
@@ -34,7 +27,7 @@ const RegisterScreen = () => {
           setUser(true);
           storeData(true);
         }}
-        validationSchema={validationSchema}>
+        validationSchema={registerFormSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (
           <>
             <TextInputWithIcon

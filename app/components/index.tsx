@@ -8,6 +8,7 @@ import ListItemWithImage from './ListItemWithImage';
 import PostItemForm from './PostItemForm';
 import SwipeRightAction from './SwipeRightAction';
 import TextInputWithIcon from './TextInputWithIcon';
+import AppImagePicker from './AppImagePicker';
 
 export {
   Card,
@@ -20,4 +21,5 @@ export {
   PostItemForm,
   SwipeRightAction,
   TextInputWithIcon,
+  AppImagePicker,
 };

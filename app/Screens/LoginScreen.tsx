@@ -2,7 +2,6 @@ import {Image, StyleSheet, Text} from 'react-native';
 import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import {useNavigation} from '@react-navigation/native';
 import {AppContext} from '../utils/AppContext';
 
@@ -14,11 +13,7 @@ import {
   ErrorMessage,
 } from '../components';
 import {storeData} from '../utils/StoreData';
-
-const validationScema = Yup.object().shape({
-  email: Yup.string().required().email().label('Email'),
-  password: Yup.string().required().min(4).label('Password'),
-});
+import loginFormSchema from '../utils/validationSchema/loginFormSchema';
 
 const LoginScreen = () => {
   const navigation = useNavigation<any>();
@@ -35,7 +30,7 @@ const LoginScreen = () => {
           setUser(true);
           storeData(true);
         }}
-        validationSchema={validationScema}>
+        validationSchema={loginFormSchema}>
         {({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
           <>
             <TextInputWithIcon
