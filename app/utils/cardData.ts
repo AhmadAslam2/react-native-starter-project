@@ -15,9 +15,9 @@ export let cardData: cardDataInterface[] = [
   },
   {
     id: 2,
-    image: require('../assests/jacket.jpg'),
-    title: 'Leather jacket',
-    subtitle: '100',
+    image: require('../assests/bike.jpg'),
+    title: 'Bike',
+    subtitle: '5500',
   },
   {
     id: 3,
