@@ -21,11 +21,11 @@ const Card = ({image, title, subtitle, onPress}: cardProps) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
         <Image resizeMode="cover" style={styles.image} source={image} />
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.subTitle}>${subtitle}</Text>
+        </View>
       </TouchableOpacity>
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subTitle}>${subtitle}</Text>
-      </View>
     </View>
   );
 };
@@ -54,5 +54,6 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 200,
+    width: 400,
   },
 });

@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, TouchableHighlight, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 
@@ -75,14 +75,12 @@ const AccountScreen = () => {
           ItemSeparatorComponent={ListItemSeperator}
         />
       </View>
-      <TouchableHighlight
-        underlayColor={colors.lightgrey}
-        onPress={() => {
-          setUser(false);
-          storeData(false);
-        }}
-        style={styles.logout}>
+      <View style={styles.logout}>
         <ListItemWithIcon
+          onPress={() => {
+            setUser(false);
+            storeData(false);
+          }}
           Icon={
             <CustomIcon
               backgroundColor={colors.danger}
@@ -94,7 +92,7 @@ const AccountScreen = () => {
           }
           title="Logout"
         />
-      </TouchableHighlight>
+      </View>
     </SafeAreaView>
   );
 };
@@ -120,8 +118,6 @@ const styles = StyleSheet.create({
   },
   logout: {
     backgroundColor: 'white',
-    marginBottom: 30,
-    width: '100%',
     paddingHorizontal: 15,
   },
 });
