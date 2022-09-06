@@ -13,11 +13,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import MainNavigator from './app/navigation/MainNavigator';
-import AuthNavigator from './app/navigation/AuthNavigator';
-import {AppContext} from './app/utils/AppContext';
-import SplashNavigator from './app/navigation/SplashNavigator';
-import {cardData} from './app/utils/cardData';
+import {AppContext, cardData} from './app/utils';
+import {AuthNavigator, MainNavigator, SplashNavigator} from './app/navigation';
 
 const App = () => {
   const [user, setUser] = useState(true);

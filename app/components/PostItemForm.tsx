@@ -83,7 +83,6 @@ const PostItemForm = () => {
           setFieldValue,
         }) => (
           <>
-            {/* we need to refactor this */}
             <View style={styles.imagePickerContainer}>
               <ScrollView
                 onContentSizeChange={() => scrollView?.current?.scrollToEnd()}
@@ -106,7 +105,6 @@ const PostItemForm = () => {
                 Please select atleast one image
               </Text>
             )}
-            {/* we need to refactor this */}
             <TextInputWithIcon
               Icon={
                 <CustomIcon

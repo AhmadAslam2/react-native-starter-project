@@ -4,8 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {ModalScreen} from '../screens';
 import {CustomIcon} from '../components';
 import colors from '../config/colors';
-import HomeNavigatorStack from './HomeNavigatorStack';
-import AccountNavigatorStack from './AccountNavigatorStack';
+import {AccountNavigatorStack, HomeNavigatorStack} from '.';
 
 const Tab = createBottomTabNavigator();
 
