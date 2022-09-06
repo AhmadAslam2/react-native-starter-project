@@ -58,7 +58,7 @@ const ModalScreen = () => {
         </ScrollView>
       </View>
       <View style={styles.formContainer}>
-        <PostItemForm imageUris={imageUris} />
+        <PostItemForm imageUris={imageUris} setImageUris={setImageUris} />
       </View>
     </SafeAreaView>
   );

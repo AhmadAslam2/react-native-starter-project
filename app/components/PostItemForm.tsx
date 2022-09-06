@@ -16,11 +16,15 @@ import {AppContext} from '../utils/AppContext';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(3).label('Title'),
-  price: Yup.number().required().min(1).max(10000).label('Price'),
+  price: Yup.number()
+    .required()
+    .min(1)
+    .max(10000)
+    .label('Price')
+    .typeError('Price can only be number'),
   category: Yup.string().required().label('Category'),
   description: Yup.string().required().label('Description'),
 });
-
 const categories: {label: string; value: string}[] = [
   {label: 'Jacket', value: 'jacket'},
   {label: 'Chair', value: 'chair'},
@@ -29,28 +33,27 @@ const categories: {label: string; value: string}[] = [
   {label: 'Car', value: 'car'},
   {label: 'Bike', value: 'bike'},
 ];
-
+const initialValues = {
+  title: '',
+  price: 0,
+  category: '',
+  description: '',
+};
 interface PostItemFormProps {
   imageUris: string[];
+  setImageUris: any;
 }
-
-const PostItemForm = ({imageUris}: PostItemFormProps) => {
+const PostItemForm = ({imageUris, setImageUris}: PostItemFormProps) => {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
   const navigation = useNavigation<any>();
   const {Data, setData} = useContext(AppContext);
 
-  const initialValues = {
-    title: '',
-    price: 0,
-    category: '',
-    description: '',
-  };
   return (
     <SafeAreaView>
       <Formik
         initialValues={initialValues}
-        onSubmit={values => {
+        onSubmit={(values, {resetForm}) => {
           const newCardEntry: cardDataInterface = {
             id: Math.random(),
             title: values.title,
@@ -59,9 +62,13 @@ const PostItemForm = ({imageUris}: PostItemFormProps) => {
           };
           const newData = [newCardEntry, ...Data];
           setData(newData);
+          setImageUris([]);
+          resetForm({});
+          navigation.navigate('ListingsScreen');
         }}
         validationSchema={validationSchema}>
         {({
+          values,
           handleSubmit,
           handleChange,
           errors,
@@ -83,6 +90,7 @@ const PostItemForm = ({imageUris}: PostItemFormProps) => {
                 placeholder: 'Title',
                 onBlur: () => setFieldTouched('title'),
                 onChangeText: handleChange('title'),
+                value: values.title || '',
               }}
             />
             <ErrorMessage text={errors.title} visible={touched.title} />
@@ -99,10 +107,14 @@ const PostItemForm = ({imageUris}: PostItemFormProps) => {
                 placeholder: 'Price',
                 onBlur: () => setFieldTouched('price'),
                 onChangeText: handleChange('price'),
+                //@ts-ignore
+                value: values.price || undefined,
               }}
             />
             <ErrorMessage text={errors.price} visible={touched.price} />
             <DropDownPicker
+              dropDownContainerStyle={styles.dropDownContainerStyle}
+              listItemContainerStyle={styles.listItemContainerStyle}
               style={styles.dropdownStyle}
               placeholderStyle={styles.placeholderStyle}
               setOpen={setOpen}
@@ -126,6 +138,7 @@ const PostItemForm = ({imageUris}: PostItemFormProps) => {
                 placeholder: 'Description',
                 onBlur: () => setFieldTouched('description'),
                 onChangeText: handleChange('description'),
+                value: values.description || '',
               }}
             />
             <ErrorMessage
@@ -136,7 +149,6 @@ const PostItemForm = ({imageUris}: PostItemFormProps) => {
               text="Post"
               onPress={() => {
                 handleSubmit();
-                navigation.goBack();
               }}
               color={colors.primary}
             />
@@ -151,12 +163,19 @@ export default PostItemForm;
 
 const styles = StyleSheet.create({
   dropdownStyle: {
-    borderColor: colors.lightgrey,
+    borderColor: 'transparent',
     borderRadius: 8,
     height: 55,
     marginVertical: 10,
   },
   placeholderStyle: {
     color: colors.lightgrey,
+  },
+  dropDownContainerStyle: {
+    borderColor: 'transparent',
+  },
+  listItemContainerStyle: {
+    borderBottomColor: 'lightgrey',
+    borderBottomWidth: 0.5,
   },
 });
