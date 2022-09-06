@@ -9,8 +9,8 @@ export interface cardDataInterface {
 export let cardData: cardDataInterface[] = [
   {
     id: 1,
-    image: {uri: 'https://picsum.photos/400/300'},
-    title: 'Random thing',
+    image: require('../assests/chair.jpg'),
+    title: 'Chair',
     subtitle: '300',
   },
   {
@@ -21,8 +21,8 @@ export let cardData: cardDataInterface[] = [
   },
   {
     id: 3,
-    image: {uri: 'https://picsum.photos/400/300'},
-    title: 'Leather jacket',
+    image: require('../assests/desk.jpg'),
+    title: 'Wooden Desk',
     subtitle: '50',
   },
 ];

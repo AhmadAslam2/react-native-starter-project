@@ -20,7 +20,7 @@ const Card = ({image, title, subtitle, onPress}: cardProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
-        <Image resizeMode="stretch" style={styles.image} source={image} />
+        <Image resizeMode="cover" style={styles.image} source={image} />
       </TouchableOpacity>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{title}</Text>
