@@ -5,11 +5,11 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 
 import {Card, ListItemWithImage} from '../components';
 import colors from '../config/colors';
-import {cardDataInterface} from '../utils/cardData';
+import {listingsInterface} from '../utils/cardData';
 
 type ParamList = {
   ListingDetailScreen: {
-    item: cardDataInterface;
+    item: listingsInterface;
   };
 };
 const ListingDetailScreen = () => {
@@ -17,7 +17,11 @@ const ListingDetailScreen = () => {
   const item = route?.params?.item;
   return (
     <SafeAreaView style={styles.container}>
-      <Card image={item?.image} title={item?.title} subtitle={item?.subtitle} />
+      <Card
+        imageUrl={item.images[0].url}
+        title={item.title}
+        subtitle={item.price}
+      />
       <ListItemWithImage
         image={require('../assests/profile.jpg')}
         title="Rana William"

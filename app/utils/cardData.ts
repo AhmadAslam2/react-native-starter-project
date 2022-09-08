@@ -1,32 +1,35 @@
-import {ImageSourcePropType} from 'react-native';
-
-export interface cardDataInterface {
+export interface listingsInterface {
   id: number;
-  image: ImageSourcePropType;
   title: string;
-  subtitle: string;
+  images: [
+    {
+      url: string;
+      thumbnailUrl: string;
+    },
+  ];
+  price: number;
+  categoryId: number;
+  userId: number;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 }
-export let cardData: cardDataInterface[] = [
-  {
-    id: 1,
-    image: require('../assests/chair.jpg'),
-    title: 'Chair',
-    subtitle: '300',
-  },
-  {
-    id: 2,
-    image: require('../assests/bike.jpg'),
-    title: 'Bike',
-    subtitle: '5500',
-  },
-  {
-    id: 3,
-    image: require('../assests/desk.jpg'),
-    title: 'Wooden Desk',
-    subtitle: '50',
-  },
-];
 
-export const getData = () => {
-  return cardData;
+export const defaultData = {
+  id: 201,
+  title: 'Red jacket',
+  images: [
+    {
+      url: 'http://192.168.18.116:9000/assets/jacket1_full.jpg',
+      thumbnailUrl: 'http://192.168.18.116:9000/assets/jacket1_thumb.jpg',
+    },
+  ],
+  price: 100,
+  categoryId: 5,
+  userId: 1,
+  location: {
+    latitude: 37.78825,
+    longitude: -122.4324,
+  },
 };

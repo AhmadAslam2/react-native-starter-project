@@ -1,16 +1,16 @@
-import {cardDataInterface, cardData} from './cardData';
+import {listingsInterface, defaultData} from './cardData';
 import {createContext, Dispatch, SetStateAction} from 'react';
 
 interface AppContextInterface {
   user: boolean;
   setUser: Dispatch<SetStateAction<boolean>>;
-  Data: cardDataInterface[];
-  setData: Dispatch<SetStateAction<cardDataInterface[]>>;
+  listings: listingsInterface[] | undefined;
+  setListings: Dispatch<SetStateAction<listingsInterface[]>>;
 }
 
 export const AppContext = createContext<AppContextInterface>({
   user: false,
   setUser: () => true,
-  Data: cardData,
-  setData: () => cardData,
+  listings: undefined,
+  setListings: () => defaultData,
 });

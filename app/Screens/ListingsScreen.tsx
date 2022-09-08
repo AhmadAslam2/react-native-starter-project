@@ -10,7 +10,7 @@ import {AppContext} from '../utils/AppContext';
 const ListingsScreen = () => {
   const navigation = useNavigation<any>();
   const [refreshing, setRefreshing] = useState(false);
-  const {Data} = useContext(AppContext);
+  const {listings} = useContext(AppContext);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,14 +18,14 @@ const ListingsScreen = () => {
         <FlatList
           onRefresh={() => setRefreshing(false)}
           refreshing={refreshing}
-          data={Data}
+          data={listings}
           keyExtractor={data => data.id.toString()}
           renderItem={({item}) => (
             <Card
               onPress={() => navigation.navigate('ListingDetailScreen', {item})}
-              image={item.image}
+              imageUrl={item.images[0].url}
               title={item.title}
-              subtitle={item.subtitle}
+              subtitle={item.price}
             />
           )}
         />

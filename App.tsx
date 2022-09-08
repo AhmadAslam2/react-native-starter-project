@@ -8,41 +8,48 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {AppContext, cardData} from './app/utils';
-import {AuthNavigator, MainNavigator, SplashNavigator} from './app/navigation';
+import {AppContext, Splash} from './app/utils';
+import {AuthNavigator, MainNavigator} from './app/navigation';
+import {getListings} from './app/api/listingsApi';
 
 const App = () => {
-  const [user, setUser] = useState(true);
-  const [loading, setLoading] = useState(true);
-  const [Data, setData] = useState(cardData);
-  const getData = () => {
+  const [listings, setListings] = useState(undefined);
+  const [user, setUser] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const getUser = async () => {
+    const response = await AsyncStorage.getItem('user');
+    setUser(response != null ? JSON.parse(response) : false);
+  };
+
+  const fetchListings = async () => {
     try {
-      setTimeout(async () => {
-        const response = await AsyncStorage.getItem('user');
-        setUser(response != null ? JSON.parse(response) : false);
-        setLoading(false);
-      }, 2000);
-    } catch (error) {
-      console.log(error);
+      setLoading(true);
+      const response = await getListings();
+      setListings(response.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
-  getData();
+  useEffect(() => {
+    getUser();
+    if (user) {
+      fetchListings();
+    }
+  }, [user]);
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <AppContext.Provider value={{user, setUser, Data, setData}}>
-          {loading ? (
-            <SplashNavigator />
-          ) : user ? (
-            <MainNavigator />
-          ) : (
-            <AuthNavigator />
-          )}
+        <AppContext.Provider value={{user, setUser, listings, setListings}}>
+          {loading ? <Splash /> : user ? <MainNavigator /> : <AuthNavigator />}
         </AppContext.Provider>
       </NavigationContainer>
     </SafeAreaProvider>

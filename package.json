@@ -19,6 +19,7 @@
     "@rneui/base": "^0.0.0-edge.2",
     "@rneui/themed": "^0.0.0-edge.2",
     "@types/react-native-snap-carousel": "^3.8.5",
+    "axios": "^0.27.2",
     "formik": "^2.2.9",
     "lottie-react-native": "^5.1.4",
     "prop-types": "^15.8.1",

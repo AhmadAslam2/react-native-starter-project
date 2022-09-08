@@ -1,26 +1,23 @@
-import {
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import colors from '../config/colors';
 
 interface cardProps {
-  image: ImageSourcePropType;
+  imageUrl: string;
   title: string;
-  subtitle: string;
+  subtitle: string | number;
   onPress?(): void;
 }
 
-const Card = ({image, title, subtitle, onPress}: cardProps) => {
+const Card = ({imageUrl, title, subtitle, onPress}: cardProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
-        <Image resizeMode="cover" style={styles.image} source={image} />
+        <Image
+          resizeMode="cover"
+          style={styles.image}
+          source={{uri: imageUrl}}
+        />
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subTitle}>${subtitle}</Text>
