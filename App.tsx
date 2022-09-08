@@ -26,7 +26,7 @@ const App = () => {
         const response = await AsyncStorage.getItem('user');
         setUser(response != null ? JSON.parse(response) : false);
         setLoading(false);
-      }, 1000);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
