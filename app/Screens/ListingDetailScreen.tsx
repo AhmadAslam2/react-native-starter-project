@@ -5,11 +5,11 @@ import {RouteProp, useRoute} from '@react-navigation/native';
 
 import {Card, ListItemWithImage} from '../components';
 import colors from '../config/colors';
-import {listingsInterface} from '../utils/cardData';
+import listingInterface from '../utils/listingInterface';
 
 type ParamList = {
   ListingDetailScreen: {
-    item: listingsInterface;
+    item: listingInterface;
   };
 };
 const ListingDetailScreen = () => {

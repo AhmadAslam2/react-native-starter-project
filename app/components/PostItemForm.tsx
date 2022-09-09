@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useContext, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Formik} from 'formik';
 import DropDownPicker from 'react-native-dropdown-picker';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -22,8 +22,9 @@ import {
 } from '.';
 import colors from '../config/colors';
 import {postFormSchema} from '../utils/validationSchema';
-import {AppContext, categories} from '../utils';
-import {cardDataInterface} from '../utils/cardData';
+import listingInterface from '../utils/listingInterface';
+import {addListing} from '../api/listingsApi';
+import {categories} from '../utils';
 
 const initialValues = {
   title: '',
@@ -32,22 +33,32 @@ const initialValues = {
   description: '',
 };
 const PostItemForm = () => {
+  const [_categories] = useState(categories);
   const [imageUris, setImageUris] = useState<string[]>([]);
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
   const navigation = useNavigation<any>();
-  const {Data, setData} = useContext(AppContext);
   const scrollView = useRef<any>();
 
-  const onSubmit = (values: any, resetForm: any) => {
-    const newCardEntry: cardDataInterface = {
+  const onSubmit = async (values: any, resetForm: any) => {
+    const newListing: listingInterface = {
       id: Math.random(),
       title: values.title,
-      subtitle: values.price.toString(),
-      image: {uri: imageUris[0] ?? '../assests/jacket.jpg'},
+      price: values.price,
+      description: values.description,
+      // images: [...imageUris],
+      categoryId: values.category,
     };
-    const newData = [newCardEntry, ...Data];
-    setData(newData);
+
+    //Calling the api.
+    try {
+      const res = await addListing(newListing);
+      console.log(res);
+    } catch (error) {
+      console.log('asdfasdfadsff', error);
+    }
+
+    // After submitting the form
     setImageUris([]);
     resetForm({});
     setValue(null);
@@ -145,12 +156,12 @@ const PostItemForm = () => {
               listItemContainerStyle={styles.listItemContainerStyle}
               style={styles.dropdownStyle}
               placeholderStyle={styles.placeholderStyle}
-              setOpen={setOpen}
               multiple={false}
               value={value}
               setValue={setValue}
               open={open}
-              items={categories}
+              setOpen={setOpen}
+              items={_categories}
               onChangeValue={itemvalue => setFieldValue('category', itemvalue)}
             />
             <ErrorMessage text={errors.category} visible={touched.category} />

@@ -1,16 +1,17 @@
-export interface listingsInterface {
+export default interface listingInterface {
   id: number;
   title: string;
-  images: [
+  description: string;
+  images?: [
     {
       url: string;
       thumbnailUrl: string;
     },
   ];
   price: number;
-  categoryId: number;
-  userId: number;
-  location: {
+  categoryId?: number;
+  userId?: number;
+  location?: {
     latitude: number;
     longitude: number;
   };

@@ -3,7 +3,7 @@ import React from 'react';
 import colors from '../config/colors';
 
 interface cardProps {
-  imageUrl: string;
+  imageUrl: string | undefined;
   title: string;
   subtitle: string | number;
   onPress?(): void;
@@ -13,11 +13,13 @@ const Card = ({imageUrl, title, subtitle, onPress}: cardProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
-        <Image
-          resizeMode="cover"
-          style={styles.image}
-          source={{uri: imageUrl}}
-        />
+        {imageUrl && (
+          <Image
+            resizeMode="cover"
+            style={styles.image}
+            source={{uri: imageUrl}}
+          />
+        )}
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subTitle}>${subtitle}</Text>

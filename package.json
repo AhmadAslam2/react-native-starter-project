@@ -31,6 +31,7 @@
     "react-native-image-picker": "^4.10.0",
     "react-native-image-slider-box": "^2.0.5",
     "react-native-modal": "^13.0.1",
+    "react-native-progress": "^5.0.0",
     "react-native-safe-area-context": "*",
     "react-native-safe-area-view": "^1.1.1",
     "react-native-screens": "*",
