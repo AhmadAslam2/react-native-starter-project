@@ -53,7 +53,7 @@ const PostItemForm = () => {
     //Calling the api.
     try {
       const res = await addListing(newListing);
-      console.log(res);
+      console.log(res.status);
     } catch (error) {
       console.log('asdfasdfadsff', error);
     }

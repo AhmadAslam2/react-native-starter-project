@@ -15,27 +15,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {AppContext, Splash} from './app/utils';
 import {AuthNavigator, MainNavigator} from './app/navigation';
-import {getListings} from './app/api/listingsApi';
 import {getCategories} from './app/api/categoriesApi';
 import {setCategories} from './app/utils/pickerCategories';
 
 const App = () => {
   const [user, setUser] = useState(false);
-  const [listings, setListings] = useState(undefined);
   const [loading, setLoading] = useState(false);
-
-  //Loading the listing.
-  const loadListings = async () => {
-    try {
-      setLoading(true);
-      const response = await getListings();
-      setListings(response.data);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   //Getting the current status of the user
   const getUser = async () => {
@@ -46,8 +31,10 @@ const App = () => {
   //Loading the categories for the picker
   const loadCategories = async () => {
     try {
+      setLoading(true);
       const response = await getCategories();
       setCategories(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -56,15 +43,12 @@ const App = () => {
   useEffect(() => {
     loadCategories();
     getUser();
-    if (user) {
-      loadListings();
-    }
   }, [user]);
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <AppContext.Provider value={{user, setUser, listings}}>
+        <AppContext.Provider value={{user, setUser}}>
           {loading ? <Splash /> : user ? <MainNavigator /> : <AuthNavigator />}
         </AppContext.Provider>
       </NavigationContainer>

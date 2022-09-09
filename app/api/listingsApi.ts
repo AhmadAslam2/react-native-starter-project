@@ -12,7 +12,6 @@ export const addListing = (listing: listingInterface) => {
   data.append('price', listing.price);
   data.append('categoryId', listing.categoryId);
   data.append('description', listing.description);
-  console.log(listing.images);
 
   listing?.images?.forEach((image, index) => {
     data.append('images', {

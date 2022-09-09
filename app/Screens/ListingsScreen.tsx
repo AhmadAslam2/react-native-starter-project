@@ -1,16 +1,33 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
-import React, {useContext, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {Card} from '../components';
 import {useNavigation} from '@react-navigation/native';
 import colors from '../config/colors';
-import {AppContext} from '../utils/AppContext';
+import {getListings} from '../api/listingsApi';
+import listingInterface from '../utils/listingInterface';
 
 const ListingsScreen = () => {
   const navigation = useNavigation<any>();
   const [refreshing, setRefreshing] = useState(false);
-  const {listings} = useContext(AppContext);
+  const [listings, setListings] = useState<listingInterface[]>([]);
+
+  //Loading the listing.
+  const loadListings = async () => {
+    try {
+      setRefreshing(true);
+      const response = await getListings();
+      setListings(response.data.reverse());
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+  useEffect(() => {
+    loadListings();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
