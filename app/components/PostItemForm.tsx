@@ -46,7 +46,7 @@ const PostItemForm = () => {
       title: values.title,
       price: values.price,
       description: values.description,
-      // images: [...imageUris],
+      images: [...imageUris],
       categoryId: values.category,
     };
 

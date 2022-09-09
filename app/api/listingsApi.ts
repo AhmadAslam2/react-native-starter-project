@@ -18,7 +18,7 @@ export const addListing = (listing: listingInterface) => {
     data.append('images', {
       name: 'image' + index,
       type: 'image/jpg',
-      url: image,
+      uri: image,
     });
   });
 
