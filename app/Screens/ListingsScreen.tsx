@@ -1,18 +1,20 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 
 import {Card} from '../components';
 import {useNavigation} from '@react-navigation/native';
 import colors from '../config/colors';
 import {getListings} from '../api/listingsApi';
 import listingInterface from '../utils/listingInterface';
+import {AppContext} from '../utils';
 
 const ListingsScreen = () => {
   const navigation = useNavigation<any>();
   const [refreshing, setRefreshing] = useState(false);
   const [listings, setListings] = useState<listingInterface[]>([]);
 
+  const {newListing} = useContext(AppContext);
   //Loading the listing.
   const loadListings = async () => {
     try {
@@ -27,7 +29,7 @@ const ListingsScreen = () => {
   };
   useEffect(() => {
     loadListings();
-  }, []);
+  }, [newListing]);
 
   return (
     <SafeAreaView style={styles.container}>

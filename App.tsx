@@ -20,7 +20,17 @@ import {setCategories} from './app/utils/pickerCategories';
 
 const App = () => {
   const [user, setUser] = useState(false);
+  const [newListing, setNewListing] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  //Changing the value newListing
+  const toggleNewListing = () => {
+    if (newListing) {
+      setNewListing(false);
+    } else {
+      setNewListing(true);
+    }
+  };
 
   //Getting the current status of the user
   const getUser = async () => {
@@ -48,7 +58,8 @@ const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <AppContext.Provider value={{user, setUser}}>
+        <AppContext.Provider
+          value={{user, setUser, newListing, toggleNewListing}}>
           {loading ? <Splash /> : user ? <MainNavigator /> : <AuthNavigator />}
         </AppContext.Provider>
       </NavigationContainer>

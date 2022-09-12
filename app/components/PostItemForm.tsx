@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {Formik} from 'formik';
 import DropDownPicker from 'react-native-dropdown-picker';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -24,7 +24,7 @@ import colors from '../config/colors';
 import {postFormSchema} from '../utils/validationSchema';
 import listingInterface from '../utils/listingInterface';
 import {addListing} from '../api/listingsApi';
-import {categories} from '../utils';
+import {AppContext, categories} from '../utils';
 
 const initialValues = {
   title: '',
@@ -39,7 +39,7 @@ const PostItemForm = () => {
   const [open, setOpen] = useState(false);
   const navigation = useNavigation<any>();
   const scrollView = useRef<any>();
-
+  const {toggleNewListing} = useContext(AppContext);
   const onSubmit = async (values: any, resetForm: any) => {
     const newListing: listingInterface = {
       id: Math.random(),
@@ -62,6 +62,7 @@ const PostItemForm = () => {
     setImageUris([]);
     resetForm({});
     setValue(null);
+    toggleNewListing();
     navigation.navigate('ListingsScreen');
   };
 
