@@ -25,5 +25,7 @@ export const addListing = (listing: listingInterface) => {
     data.append('location', JSON.stringify(listing.location));
   }
 
-  return instance.post('/listings', data);
+  return instance.post('/listings', data, {
+    onUploadProgress: progress => console.log(progress.loaded / progress.total),
+  });
 };
