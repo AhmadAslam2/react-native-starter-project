@@ -17,6 +17,7 @@ import {AppContext, Splash} from './app/utils';
 import {AuthNavigator, MainNavigator} from './app/navigation';
 import {getCategories} from './app/api/categoriesApi';
 import {setCategories} from './app/utils/pickerCategories';
+import OfflineStatus from './app/components/OfflineStatus';
 
 const App = () => {
   const [user, setUser] = useState(false);
@@ -57,6 +58,7 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
+      {/* <OfflineStatus /> */}
       <NavigationContainer>
         <AppContext.Provider
           value={{user, setUser, newListing, toggleNewListing}}>
