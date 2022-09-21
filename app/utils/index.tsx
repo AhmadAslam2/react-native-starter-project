@@ -1,6 +1,6 @@
 import {AppContext} from './AppContext';
 import Splash from './Splash';
-import {storeData} from './StoreData';
+import storageHelper from './storageHelper';
 import {categories} from './pickerCategories';
 
-export {AppContext, Splash, storeData, categories};
+export {AppContext, Splash, storageHelper, categories};

@@ -1,15 +1,15 @@
 import {createContext, Dispatch, SetStateAction} from 'react';
 
 interface AppContextInterface {
-  user: boolean;
-  setUser: Dispatch<SetStateAction<boolean>>;
+  user: any | null;
+  setUser: Dispatch<SetStateAction<any>>;
   newListing: boolean;
   toggleNewListing: () => void;
 }
 
 export const AppContext = createContext<AppContextInterface>({
-  user: false,
-  setUser: () => true,
+  user: null,
+  setUser: () => {},
   newListing: false,
   toggleNewListing: () => {},
 });

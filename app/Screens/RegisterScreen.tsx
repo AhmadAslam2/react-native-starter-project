@@ -12,7 +12,7 @@ import {
   ErrorMessage,
 } from '../components';
 import {AppContext} from '../utils/AppContext';
-import {storeData} from '../utils/StoreData';
+// import storageHelper from '../utils/storageHelper';
 import registerFormSchema from '../utils/validationSchema/registerFormSchema';
 
 const RegisterScreen = () => {
@@ -25,7 +25,7 @@ const RegisterScreen = () => {
         onSubmit={values => {
           console.log(values);
           setUser(true);
-          storeData(true);
+          // storageHelper.storeData(true);
         }}
         validationSchema={registerFormSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (

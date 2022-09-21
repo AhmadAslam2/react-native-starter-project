@@ -10,7 +10,7 @@ import {
   ListItemWithImage,
 } from '../components';
 import {AppContext} from '../utils/AppContext';
-import {storeData} from '../utils/StoreData';
+import storageHelpers from '../utils/storageHelper';
 import {useNavigation} from '@react-navigation/native';
 
 interface Data {
@@ -78,8 +78,8 @@ const AccountScreen = () => {
       <View style={styles.logout}>
         <ListItemWithIcon
           onPress={() => {
-            setUser(false);
-            storeData(false);
+            setUser(null);
+            storageHelpers.removeData('user');
           }}
           Icon={
             <CustomIcon
