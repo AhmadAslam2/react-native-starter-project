@@ -11,21 +11,34 @@ import {
   CustomIcon,
   ErrorMessage,
 } from '../components';
-import {AppContext} from '../utils/AppContext';
-// import storageHelper from '../utils/storageHelper';
 import registerFormSchema from '../utils/validationSchema/registerFormSchema';
+import auth from '../api/authApi';
+import {storageHelper} from '../utils';
+import jwtDecode from 'jwt-decode';
+import {AppContext, userInterface} from '../utils/AppContext';
 
 const RegisterScreen = () => {
   const navigation = useNavigation<any>();
   const {setUser} = useContext(AppContext);
+
+  const handleRegister = async (value: any) => {
+    try {
+      await auth.register(value);
+      const res = await auth.login(value.email, value.password);
+      storageHelper.storeData('token', res.data);
+      const user = jwtDecode<userInterface>(res.data);
+      setUser(user);
+      storageHelper.storeData('user', user);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Formik
         initialValues={{name: '', email: '', password: ''}}
         onSubmit={values => {
-          console.log(values);
-          setUser(true);
-          // storageHelper.storeData(true);
+          handleRegister(values);
         }}
         validationSchema={registerFormSchema}>
         {({handleSubmit, handleChange, setFieldTouched, touched, errors}) => (

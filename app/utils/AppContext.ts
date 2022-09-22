@@ -1,8 +1,15 @@
 import {createContext, Dispatch, SetStateAction} from 'react';
 
+export interface userInterface {
+  userId: number;
+  name: string;
+  email: string;
+  iat: string;
+}
+
 interface AppContextInterface {
-  user: any | null;
-  setUser: Dispatch<SetStateAction<any>>;
+  user: userInterface | null;
+  setUser: Dispatch<SetStateAction<userInterface | null>>;
   newListing: boolean;
   toggleNewListing: () => void;
 }

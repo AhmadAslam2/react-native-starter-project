@@ -17,10 +17,11 @@ import {AppContext, Splash} from './app/utils';
 import {AuthNavigator, MainNavigator} from './app/navigation';
 import {getCategories} from './app/api/categoriesApi';
 import {setCategories} from './app/utils/pickerCategories';
+import {userInterface} from './app/utils/AppContext';
 // import OfflineStatus from './app/components/OfflineStatus';
 
 const App = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<userInterface | null>(null);
   const [newListing, setNewListing] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -35,8 +36,12 @@ const App = () => {
 
   //Getting the current status of the user
   const getUser = async () => {
-    const response = await AsyncStorage.getItem('user');
-    setUser(response);
+    try {
+      const response = await AsyncStorage.getItem('user');
+      setUser(response);
+    } catch (error) {
+      console.log;
+    }
   };
 
   //Loading the categories for the picker

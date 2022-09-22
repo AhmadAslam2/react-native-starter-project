@@ -5,7 +5,7 @@ import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import jwtDecode from 'jwt-decode';
 
-import {AppContext} from '../utils/AppContext';
+import {AppContext, userInterface} from '../utils/AppContext';
 import colors from '../config/colors';
 import {
   TextInputWithIcon,
@@ -15,7 +15,7 @@ import {
 } from '../components';
 import storageHelper from '../utils/storageHelper';
 import loginFormSchema from '../utils/validationSchema/loginFormSchema';
-import auth from '../api/auth';
+import auth from '../api/authApi';
 
 interface loginVlauesTypes {
   email: string;
@@ -30,8 +30,9 @@ const LoginScreen = () => {
   const onSubmit = async (loginVlaues: loginVlauesTypes) => {
     try {
       const res = await auth.login(loginVlaues.email, loginVlaues.password);
+      storageHelper.storeData('token', res.data);
       setLoginFailed(false);
-      const user = jwtDecode(res.data);
+      const user = jwtDecode<userInterface>(res.data);
       setUser(user);
       storageHelper.storeData('user', user);
     } catch (err) {

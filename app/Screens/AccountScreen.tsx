@@ -41,15 +41,16 @@ const listData: Data[] = [
 ];
 
 const AccountScreen = () => {
-  const {setUser} = useContext(AppContext);
+  const {user, setUser} = useContext(AppContext);
+  const {name, email} = JSON.parse(user);
   const navigation = useNavigation<any>();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userView}>
         <ListItemWithImage
           image={require('../assests/profile.jpg')}
-          title={'Ahmad Aslam'}
-          description={'React Native Developer @SysPlus'}
+          title={name}
+          description={email}
         />
       </View>
       <View style={styles.listView}>
