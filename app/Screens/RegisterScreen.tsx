@@ -3,6 +3,7 @@ import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 import colors from '../config/colors';
 import {
@@ -29,7 +30,16 @@ const RegisterScreen = () => {
       const user = jwtDecode<userInterface>(res.data);
       setUser(user);
       storageHelper.storeData('user', user);
+      Toast.show({
+        type: 'success',
+        text1: 'Account created succesfully',
+      });
     } catch (err) {
+      Toast.show({
+        type: 'error',
+        text1: 'Unexpected Error Occured',
+        position: 'bottom',
+      });
       console.log(err);
     }
   };

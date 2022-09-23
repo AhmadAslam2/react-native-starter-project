@@ -12,6 +12,7 @@ import {Formik} from 'formik';
 import DropDownPicker from 'react-native-dropdown-picker';
 import SafeAreaView from 'react-native-safe-area-view';
 import {useNavigation} from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 import {
   AppImagePicker,
@@ -64,6 +65,12 @@ const PostItemForm = () => {
     setValue(null);
     toggleNewListing();
     navigation.navigate('ListingsScreen');
+    Toast.show({
+      type: 'success',
+      text1: 'Success',
+      text2: 'Posted Successfully',
+      position: 'bottom',
+    });
   };
 
   const removeImage = (imageUri: string) => {

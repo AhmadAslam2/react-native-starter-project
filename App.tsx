@@ -12,6 +12,7 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
 
 import {AppContext, Splash} from './app/utils';
 import {AuthNavigator, MainNavigator} from './app/navigation';
@@ -39,8 +40,8 @@ const App = () => {
     try {
       const response = await AsyncStorage.getItem('user');
       setUser(response);
-    } catch (error) {
-      console.log;
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -52,7 +53,11 @@ const App = () => {
       setCategories(response.data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      Toast.show({
+        type: 'error',
+        text1: error?.message,
+        position: 'bottom',
+      });
     }
   };
 
@@ -63,13 +68,13 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
-      {/* <OfflineStatus /> */}
       <NavigationContainer>
         <AppContext.Provider
           value={{user, setUser, newListing, toggleNewListing}}>
           {loading ? <Splash /> : user ? <MainNavigator /> : <AuthNavigator />}
         </AppContext.Provider>
       </NavigationContainer>
+      <Toast />
     </SafeAreaProvider>
   );
 };

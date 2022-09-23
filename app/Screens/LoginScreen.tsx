@@ -1,9 +1,10 @@
 import {Image, StyleSheet, Text} from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import SafeAreaView from 'react-native-safe-area-view';
 import {Formik} from 'formik';
 import {useNavigation} from '@react-navigation/native';
 import jwtDecode from 'jwt-decode';
+import Toast from 'react-native-toast-message';
 
 import {AppContext, userInterface} from '../utils/AppContext';
 import colors from '../config/colors';
@@ -23,7 +24,6 @@ interface loginVlauesTypes {
 }
 
 const LoginScreen = () => {
-  const [loginFailed, setLoginFailed] = useState<boolean>(false);
   const navigation = useNavigation<any>();
   const {setUser} = useContext(AppContext);
 
@@ -31,12 +31,19 @@ const LoginScreen = () => {
     try {
       const res = await auth.login(loginVlaues.email, loginVlaues.password);
       storageHelper.storeData('token', res.data);
-      setLoginFailed(false);
       const user = jwtDecode<userInterface>(res.data);
       setUser(user);
       storageHelper.storeData('user', user);
+      Toast.show({
+        type: 'success',
+        text1: 'Logged in succesfully',
+      });
     } catch (err) {
-      setLoginFailed(true);
+      Toast.show({
+        type: 'error',
+        text1: 'Incorrect email or password',
+        position: 'bottom',
+      });
       console.log(err);
     }
   };
@@ -44,10 +51,6 @@ const LoginScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('../assests/logo.png')} style={styles.logo} />
-      <ErrorMessage
-        visible={loginFailed}
-        text={'Incorrect email or password'}
-      />
       <Formik
         initialValues={{email: '', password: ''}}
         onSubmit={values => {
