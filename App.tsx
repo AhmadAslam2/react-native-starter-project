@@ -19,6 +19,7 @@ import {AuthNavigator, MainNavigator} from './app/navigation';
 import {getCategories} from './app/api/categoriesApi';
 import {setCategories} from './app/utils/pickerCategories';
 import {userInterface} from './app/utils/AppContext';
+import logger from './app/utils/logger';
 // import OfflineStatus from './app/components/OfflineStatus';
 
 const App = () => {
